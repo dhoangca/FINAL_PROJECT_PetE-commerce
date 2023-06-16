@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\ClientsController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,31 +36,16 @@ Route::prefix('Clients')->name('Clients.')->group(function()
         // Route::get('search',[ClientsController::class,'search'])->name('search');
     });
 
-    // // route login and register
-    // Route::group(['prefix' =>'sign'], function()
-    // {
-    //     Route::get('login/',[LoginAndRegisterController::class,'getLogin'])->name('login');
-            
-    //     Route::post('login/',[LoginAndRegisterController::class,'postLogin'])->name('postLogin');
+});
+// end route font-end
 
-    //     Route::get('register/',[LoginAndRegisterController::class,'getRegister'])->name('register');
+// ===============================================================================================================
 
-    //     Route::post('register/',[LoginAndRegisterController::class,'postRegister']);
-            
-    // });
+// start route admin
+Route::prefix('Admins')->name('Admins.')->group(function()
+{
+    Route::get('/',[AdminController::class,'index'])->name('index');
 
-    // // route add to cart
-    // Route::group(['prefix' =>'cart'], function()
-    // {
-    //     Route::get('ShoppingCart/',[CartController::class,'cart'])->name('cart');
-            
-    //     Route::get('add-to-cart/{id}',[CartController::class,'addtocart'])->name('addtocart');
-
-    //     Route::post('/update-cart/{id}',[CartController::class,'updatecart'])->name('updatecart');
-
-    //     Route::delete('deletecart/{id}',[CartController::class,'delete']);
-            
-    // });
 });
 
-// end route font-end
+// end route back-end
