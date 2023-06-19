@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\ClientsController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +46,39 @@ Route::prefix('Clients')->name('Clients.')->group(function()
 // start route admin
 Route::prefix('Admins')->name('Admins.')->group(function()
 {
-    Route::get('/',[AdminController::class,'index'])->name('index');
+    Route::get('/',[LoginController::class,'getLogin'])->name('login');
+    
+    Route::get('index/',[AdminController::class,'index'])->name('index');
+
+    // route login 
+    Route::group(['prefix' =>'login'], function()
+    {           
+        Route::post('login/',[LoginController::class,'postLogin'])->name('postLogin');    
+    });
+
+    // group route của users
+    Route::group(['prefix' =>'users'], function()
+    {
+        // route của trang quản lý users
+        Route::get('listuser/',[UserController::class,'listuser'])->name('listuser');
+        // route của trang bảng users
+        Route::get('manageusers/',[UserController::class,'manageusers'])->name('manageusers');
+            
+        Route::get('create/',[UserController::class,'getCreate'])->name('create');
+            
+        Route::post('create/',[UserController::class,'postCreate']);
+            
+        Route::get('edit/{id}',[UserController::class,'getEditCate']);
+
+        Route::post('edit/{id}',[UserController::class,'postEditCate']);
+            
+        Route::get('delete/{id}',[UserController::class,'delete']);      
+    });
+
+
 
 });
+
+
 
 // end route back-end
