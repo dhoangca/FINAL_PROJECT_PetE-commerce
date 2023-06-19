@@ -1,0 +1,66 @@
+<!-- header -->
+<?php echo $__env->make('Admins.Layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<!-- Sidebar -->
+<?php echo $__env->make('Admins.Layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<!-- Topbar -->
+<?php echo $__env->make('Admins.Layouts.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Manage Users</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Add Users</li>
+            </ol>
+            <?php if(session('msg')): ?>
+                <div class="alert alert-success"><?php echo e(session('msg')); ?></div>
+            <?php endif; ?>
+            <form action="" method="POST">
+                <?php echo csrf_field(); ?>
+                <div class="mb-3">
+                    <label for=""> User Name </label>
+                    <input type="text" class="form-control" name="username" placeholder="User Name của bạn...">
+                </div>
+                <div class="mb-3">
+                    <label for="">Password</label>
+                    <input type="text" class="form-control" name="password" placeholder="Password của bạn..." >
+                </div>
+                <div class="mb-3">
+                    <label for=""> Name </label>
+                    <input type="text" class="form-control" name="name" placeholder="Name của bạn...">
+                </div>
+                <div class="mb-3">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" name="email" placeholder="Email của bạn..." >
+                </div>
+                <div class="mb-3">
+                    <label for=""> Phone Number  </label>
+                    <input type="text" class="form-control" name="phone_number" placeholder="số đt...">
+                </div>
+                <div class="mb-3">
+                    <label for="">Address</label>
+                    <input type="text" class="form-control" name="address" placeholder="địa chỉ ..." >
+                </div>
+                <button type="submit" class="btn btn-info"> Add </button>
+                <a href="<?php echo e(asset('Admins/users/manageusers')); ?>" class="btn btn-warning">back</a>
+
+            </form>
+        </div>
+    </main>
+</div>
+
+
+<!-- footer -->
+<?php echo $__env->make('Admins.Layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<!-- back to top -->
+<?php echo $__env->make('Admins.Layouts.back_to_top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<!-- logout -->
+<?php echo $__env->make('Admins.Layouts.logout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<!-- JS -->
+<?php echo $__env->make('Admins.Layouts.js', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Xampp\htdocs\GraduationThesis_PetE-commerce_G5\resources\views/Admins/Contents/creatusers.blade.php ENDPATH**/ ?>
