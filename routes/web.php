@@ -74,9 +74,6 @@ Route::prefix('Admins')->name('Admins.')->group(function()
             
         Route::get('delete/{id}',[UserController::class,'delete']);      
     });
-
-
-
 });
 
 
