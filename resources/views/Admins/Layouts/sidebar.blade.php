@@ -86,7 +86,6 @@
                     <a class="collapse-item" href="{{asset('Admins/users/listuser')}}">List</a>
                     <a class="collapse-item" href="{{asset('Admins/users/manageusers')}}">Integrated management
                     </a>
-                    <a class="collapse-item" href="{{asset('Admins/users/create')}}">Add</a>
                 </div>
             </div>
         </li>

@@ -115,7 +115,6 @@
                         <a class="collapse-item" href="{{ asset('Admins/users/listuser') }}">List</a>
                         <a class="collapse-item" href="{{asset('Admins/users/manageusers')}}">Integrated management
                         </a>
-                        <a class="collapse-item" href="{{asset('Admins/users/create')}}">Add</a>
                     </div>
                 </div>
             </li>
@@ -279,6 +278,7 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Phone Number</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -291,6 +291,7 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Phone Number</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -304,6 +305,7 @@
                                                 <td>{{ $value->email }}</td>
                                                 <td>{{ $value->address }}</td>
                                                 <td>{{ $value->phone_number }}</td>
+                                                <td>{{ $value->status }}</td>
                                                 <td>               
                                                     <a href="{{asset('Admins/users/edit/'.$value->user_id)}}" class="btn btn-primary edit"><span class="glyphicon glyphicon-edit"> </span> Edit</a>
                                                     <a href="{{asset('Admins/users/delete/'.$value->user_id)}}" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span>Delete</a>               
