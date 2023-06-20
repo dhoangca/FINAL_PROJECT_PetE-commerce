@@ -34,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo e(asset('Admins/index')); ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="far fa-kiss-wink-heart"></i>
                 </div>
@@ -74,7 +74,6 @@
                         <a class="collapse-item" href="<?php echo e(asset('Admins/users/listuser')); ?>">List</a>
                         <a class="collapse-item" href="<?php echo e(asset('Admins/users/manageusers')); ?>">Integrated management
                         </a>
-                        <a class="collapse-item" href="<?php echo e(asset('Admins/users/creatusers')); ?>">Add</a>
                     </div>
                 </div>
             </li>
@@ -238,6 +237,7 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Phone Number</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -249,6 +249,7 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Phone Number</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -261,6 +262,7 @@
                                                 <td><?php echo e($value->email); ?></td>
                                                 <td><?php echo e($value->address); ?></td>
                                                 <td><?php echo e($value->phone_number); ?></td>
+                                                <td><?php echo e($value->status); ?></td>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>

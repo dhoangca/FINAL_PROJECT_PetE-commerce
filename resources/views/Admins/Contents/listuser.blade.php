@@ -115,7 +115,6 @@
                         <a class="collapse-item" href="{{ asset('Admins/users/listuser') }}">List</a>
                         <a class="collapse-item" href="{{asset('Admins/users/manageusers')}}">Integrated management
                         </a>
-                        <a class="collapse-item" href="{{asset('Admins/users/create')}}">Add</a>
                     </div>
                 </div>
             </li>
@@ -279,6 +278,7 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Phone Number</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -290,6 +290,7 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Phone Number</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -302,6 +303,7 @@
                                                 <td>{{ $value->email }}</td>
                                                 <td>{{ $value->address }}</td>
                                                 <td>{{ $value->phone_number }}</td>
+                                                <td>{{ $value->status }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

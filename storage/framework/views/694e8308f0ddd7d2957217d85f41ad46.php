@@ -45,7 +45,6 @@
                     <a class="collapse-item" href="<?php echo e(asset('Admins/users/listuser')); ?>">List</a>
                     <a class="collapse-item" href="<?php echo e(asset('Admins/users/manageusers')); ?>">Integrated management
                     </a>
-                    <a class="collapse-item" href="<?php echo e(asset('Admins/users/create')); ?>">Add</a>
                 </div>
             </div>
         </li>
