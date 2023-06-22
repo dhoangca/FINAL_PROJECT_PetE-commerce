@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View the list of users</title>
+    <title>View the list of Pets</title>
 
     <!-- Custom fonts for this template -->
     <link href="Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +39,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">View the list of users</h1>
+                    <h1 class="h3 mb-2 text-gray-800">View the list of Pets</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
