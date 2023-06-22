@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ManagePetController;
+use App\Http\Controllers\Admin\ManageProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,23 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
         Route::get('delete/{id}', [ManagePetController::class, 'delete']);
     });
 
+    // group route of products
+    Route::group(['prefix' => 'Products'], function () {
+        
+        Route::get('listproducts/', [ManageProductsController::class, 'listproducts'])->name('listproducts');
+        
+        Route::get('manageproducts/', [ManageProductsController::class, 'manageproducts'])->name('manageproducts');
+
+        Route::get('create/', [ManageProductsController::class, 'getCreateProducts'])->name('create');
+
+        Route::post('create/', [ManageProductsController::class, 'postCreateProducts']);
+        
+        Route::get('edit/{id}', [ManageProductsController::class, 'getEditProducts']);
+
+        Route::post('edit/{id}', [ManageProductsController::class, 'postEditProducts']);
+
+        Route::get('delete/{id}', [ManageProductsController::class, 'delete']);
+    });
 
 });
 
