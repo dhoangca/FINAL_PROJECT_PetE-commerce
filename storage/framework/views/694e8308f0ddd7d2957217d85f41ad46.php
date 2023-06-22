@@ -32,6 +32,7 @@
             Manager
         </div>
 
+        
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
@@ -44,7 +45,25 @@
                     <h6 class="collapse-header">All Functions</h6>
                     <a class="collapse-item" href="<?php echo e(asset('Admins/users/listuser')); ?>">List</a>
                     <a class="collapse-item" href="<?php echo e(asset('Admins/users/manageusers')); ?>">Integrated management
+                    </a>                    
+                </div>
+            </div>
+        </li>
+
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
+                aria-expanded="true" aria-controls="collapsePet">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Pet management</span>
+            </a>
+            <div id="collapsePet" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">All Functions</h6>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Pets/listpets')); ?>">List</a>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Pets/managepets')); ?>">Integrated management
                     </a>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Pets/create')); ?>">Add</a>
                 </div>
             </div>
         </li>
