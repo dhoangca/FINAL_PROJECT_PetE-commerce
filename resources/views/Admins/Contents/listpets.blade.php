@@ -54,37 +54,40 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Id</th>
-                                            <th>User Name</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Phone Number</th>
-                                            <th>Status</th>
+                                            <th>Breed</th>
+                                            <th>Gender</th>
+                                            <th>Description</th>
+                                            <th>Quantity</th>
+                                            <th>Creation date</th>
+                                            <th>Updated date</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
                                             <th>Id</th>
-                                            <th>User Name</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Phone Number</th>
-                                            <th>Status</th>
+                                            <th>Breed</th>
+                                            <th>Gender</th>
+                                            <th>Description</th>
+                                            <th>Quantity</th>
+                                            <th>Creation date</th>
+                                            <th>Updated date</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($users as $key => $value)
+                                        @foreach ($pets as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $value->user_id }}</td>
-                                                <td>{{ $value->username }}</td>
+                                                <td>{{ $value->pet_id }}</td>
                                                 <td>{{ $value->name }}</td>
-                                                <td>{{ $value->email }}</td>
-                                                <td>{{ $value->address }}</td>
-                                                <td>{{ $value->phone_number }}</td>
-                                                <td>{{ $value->status }}</td>
+                                                <td>{{ $value->breed }}</td>
+                                                <td>{{ $value->gender }}</td>
+                                                <td>{{ $value->description }}</td>
+                                                <td>{{ $value->quantity }}</td>
+                                                <td>{{ $value->created_at }}</td>
+                                                <td>{{ $value->updated_at }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
