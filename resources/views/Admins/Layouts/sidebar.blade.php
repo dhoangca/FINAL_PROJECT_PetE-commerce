@@ -108,6 +108,24 @@
                 </div>
             </div>
         </li>
+
+         {{-- product manage --}}
+         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                aria-expanded="true" aria-controls="collapseProduct">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Products management</span>
+            </a>
+            <div id="collapseProduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">All Functions</h6>
+                    <a class="collapse-item" href="{{asset('Admins/Products/listproducts')}}">List</a>
+                    <a class="collapse-item" href="{{asset('Admins/Products/manageproducts')}}">Integrated management
+                    </a>
+                    <a class="collapse-item" href="{{asset('Admins/Products/create')}}">Add</a>
+                </div>
+            </div>
+        </li>
     {{-- ========================================================================== --}}
         <!-- Divider -->
         <hr class="sidebar-divider">
