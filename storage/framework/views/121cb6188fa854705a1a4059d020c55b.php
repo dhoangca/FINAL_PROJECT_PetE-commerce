@@ -28,95 +28,106 @@
 <body id="page-top">
 
     <!-- Sidebar -->
-        <?php echo $__env->make('Admins.Layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('Admins.Layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- End of Sidebar -->
 
-        <!-- Topbar -->
-            <?php echo $__env->make('Admins.Layouts.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <!-- End of Topbar -->
+    <!-- Topbar -->
+    <?php echo $__env->make('Admins.Layouts.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">View the list of users</h1>
-                    <p class="mb-4"></p>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">View the list of users</h1>
+        <p class="mb-4"></p>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Id</th>
-                                            <th>User Name</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Phone Number</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Id</th>
-                                            <th>User Name</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Phone Number</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <tr>
-                                                <td><?php echo e($key + 1); ?></td>
-                                                <td><?php echo e($value->user_id); ?></td>
-                                                <td><?php echo e($value->username); ?></td>
-                                                <td><?php echo e($value->name); ?></td>
-                                                <td><?php echo e($value->email); ?></td>
-                                                <td><?php echo e($value->address); ?></td>
-                                                <td><?php echo e($value->phone_number); ?></td>
-                                                <td><?php echo e($value->status); ?></td>
-                                                <td>               
-                                                    <a href="<?php echo e(asset('Admins/users/edit/'.$value->user_id)); ?>" class="btn btn-primary edit"><span class="glyphicon glyphicon-edit"> </span> Edit</a>
-                                                    <a href="<?php echo e(asset('Admins/users/delete/'.$value->user_id)); ?>" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span>Delete</a>               
-                                                </td> 
-                                            </tr>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Pet E-commerce </span>
-                    </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>No.</th>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <tr>
+                                    <td><?php echo e($key + 1); ?></td>
+                                    <td><?php echo e($value->user_id); ?></td>
+                                    <td><?php echo e($value->username); ?></td>
+                                    <td><?php echo e($value->name); ?></td>
+                                    <td><?php echo e($value->email); ?></td>
+                                    <td><?php echo e($value->address); ?></td>
+                                    <td><?php echo e($value->phone_number); ?></td>
+                                    <td><?php echo e($value->status); ?></td>
+                                    <td>
+                                        <!-- Block/Unblock User Button -->
+                                        <?php if($value->status == 'active'): ?>
+                                            <a href="<?php echo e(route('Admins.users.block', ['user_id' => $value->user_id])); ?>"
+                                                class="btn btn-danger">Block</a>
+                                        <?php else: ?>
+                                            <a href="<?php echo e(route('Admins.users.unblock', ['user_id' => $value->user_id])); ?>"
+                                                class="btn btn-success">Unblock</a>
+                                        <?php endif; ?>
+                                        
+                                        <a href="<?php echo e(asset('Admins/users/delete/' . $value->user_id)); ?>"
+                                            onclick="return confirm('Bạn có chắc muốn xóa?')"
+                                            class="btn btn-danger"><span class="glyphicon glyphicon-trash">
+                                            </span>Delete</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </tbody>
+                    </table>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Pet E-commerce </span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

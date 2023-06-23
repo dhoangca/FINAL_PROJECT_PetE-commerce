@@ -28,95 +28,106 @@
 <body id="page-top">
 
     <!-- Sidebar -->
-        @INCLUDE('Admins.Layouts.sidebar')
+    @INCLUDE('Admins.Layouts.sidebar')
     <!-- End of Sidebar -->
 
-        <!-- Topbar -->
-            @INCLUDE('Admins.Layouts.topbar')
-        <!-- End of Topbar -->
+    <!-- Topbar -->
+    @INCLUDE('Admins.Layouts.topbar')
+    <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">View the list of users</h1>
-                    <p class="mb-4"></p>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">View the list of users</h1>
+        <p class="mb-4"></p>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Id</th>
-                                            <th>User Name</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Phone Number</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Id</th>
-                                            <th>User Name</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Phone Number</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach ($users as $key => $value)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $value->user_id }}</td>
-                                                <td>{{ $value->username }}</td>
-                                                <td>{{ $value->name }}</td>
-                                                <td>{{ $value->email }}</td>
-                                                <td>{{ $value->address }}</td>
-                                                <td>{{ $value->phone_number }}</td>
-                                                <td>{{ $value->status }}</td>
-                                                <td>               
-                                                    <a href="{{asset('Admins/users/edit/'.$value->user_id)}}" class="btn btn-primary edit"><span class="glyphicon glyphicon-edit"> </span> Edit</a>
-                                                    <a href="{{asset('Admins/users/delete/'.$value->user_id)}}" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span>Delete</a>               
-                                                </td> 
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Pet E-commerce </span>
-                    </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>No.</th>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach ($users as $key => $value)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $value->user_id }}</td>
+                                    <td>{{ $value->username }}</td>
+                                    <td>{{ $value->name }}</td>
+                                    <td>{{ $value->email }}</td>
+                                    <td>{{ $value->address }}</td>
+                                    <td>{{ $value->phone_number }}</td>
+                                    <td>{{ $value->status }}</td>
+                                    <td>
+                                        <!-- Block/Unblock User Button -->
+                                        @if ($value->status == 'active')
+                                            <a href="{{ route('Admins.users.block', ['user_id' => $value->user_id]) }}"
+                                                class="btn btn-danger">Block</a>
+                                        @else
+                                            <a href="{{ route('Admins.users.unblock', ['user_id' => $value->user_id]) }}"
+                                                class="btn btn-success">Unblock</a>
+                                        @endif
+                                        {{-- <a href="{{asset('Admins/users/edit/'.$value->user_id)}}" class="btn btn-primary edit"><span class="glyphicon glyphicon-edit"> </span> Edit</a> --}}
+                                        <a href="{{ asset('Admins/users/delete/' . $value->user_id) }}"
+                                            onclick="return confirm('Bạn có chắc muốn xóa?')"
+                                            class="btn btn-danger"><span class="glyphicon glyphicon-trash">
+                                            </span>Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Pet E-commerce </span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

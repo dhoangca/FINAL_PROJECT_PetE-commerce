@@ -11,79 +11,97 @@ class UserController extends Controller
 {
     public function listuser()
     {
-        $users=UsersModel::all();
+        $users = UsersModel::all();
 
-        return view ('Admins.Contents.listuser', compact("users"));
+        return view('Admins.Contents.listuser', compact("users"));
     }
 
     public function manageusers()
     {
-        $users=UsersModel::all();
+        $users = UsersModel::all();
 
-        return view ('Admins.Contents.manageusers', compact("users"));
+        return view('Admins.Contents.manageusers', compact("users"));
     }
 
-    public function getCreate()
+    public function blockUser($user_id)
     {
+        $user = UsersModel::findOrFail($user_id);
+        $user->status = 'blocked';
+        $user->save();
 
-        return view('Admins.Contents.creatusers');
-
+        return redirect()->back()->with('success', 'User blocked successfully.');
     }
 
-    //Store function to add data
-
-    public function postCreate(Request $request)
+    public function unblockUser($user_id)
     {
+        $user = UsersModel::findOrFail($user_id);
+        $user->status = 'active';
+        $user->save();
 
-        $users = new UsersModel;
-
-        $users->username = $request->username;
-
-        $users->password = $request->password;
-
-        $users->name = $request->name;
-
-        $users->email = $request->email;
-
-        $users->address = $request->address;
-
-        $users->phone_number = $request->phone_number;
-
-        $users->save();
-
-        return redirect()->route('Admins.manageusers');
-
+        return redirect()->back()->with('success', 'User unblocked successfully.');
     }
 
-    public function getEditCate($user_id)
-    {
 
-        $data['cate'] = UsersModel::find($user_id);
+    // public function getCreate()
+    // {
 
-        return view('Admins.Contents.editusers',$data);
+    //     return view('Admins.Contents.creatusers');
 
-    }
+    // }
 
-    public function postEditCate(Request $request, $user_id)
-    {
 
-        $users = UsersModel::find($user_id);
+    // public function postCreate(Request $request)
+    // {
 
-        $users->username = $request->username;
+    //     $users = new UsersModel;
 
-        $users->name = $request->name;
+    //     $users->username = $request->username;
 
-        $users->email = $request->email;
+    //     $users->password = $request->password;
 
-        $users->address = $request->address;
+    //     $users->name = $request->name;
 
-        $users->phone_number = $request->phone_number;
+    //     $users->email = $request->email;
 
-        $users->save();
+    //     $users->address = $request->address;
 
-        return redirect()->route('Admins.manageusers');
+    //     $users->phone_number = $request->phone_number;
 
-    }
+    //     $users->save();
+
+    //     return redirect()->route('Admins.manageusers');
+
+    // }
+
+    // public function getEditCate($user_id)
+    // {
+
+    //     $data['cate'] = UsersModel::find($user_id);
+
+    //     return view('Admins.Contents.editusers',$data);
+
+    // }
+
+    // public function postEditCate(Request $request, $user_id)
+    // {
+
+    //     $users = UsersModel::find($user_id);
+
+    //     $users->username = $request->username;
+
+    //     $users->name = $request->name;
+
+    //     $users->email = $request->email;
+
+    //     $users->address = $request->address;
+
+    //     $users->phone_number = $request->phone_number;
+
+    //     $users->save();
+
+    //     return redirect()->route('Admins.manageusers');
+
+    // }
 
     public function delete($user_id)
     {
