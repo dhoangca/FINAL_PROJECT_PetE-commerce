@@ -21,6 +21,11 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->status === 'blocked') {
+                Auth::logout();
+                return redirect()->back()->withErrors(['account_blocked' => 'Your account has been blocked.']);
+            }
             return redirect('Admins/index');
         }
 
