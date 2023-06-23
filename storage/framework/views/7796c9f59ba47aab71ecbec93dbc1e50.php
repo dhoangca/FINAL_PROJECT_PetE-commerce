@@ -42,37 +42,54 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="Admin/img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
+                        <nav>
+                            <ul>
+                                <?php if(auth()->guard()->guest()): ?>
+                                    <a href="<?php echo e(route('Admins.Login')); ?>" class="btn btn-primary edit"><span
+                                            class="glyphicon glyphicon-edit"> </span>Login</a>
+                                    <a href="<?php echo e(route('Admins.Register')); ?>" class="btn btn-primary edit"><span
+                                            class="glyphicon glyphicon-edit"> </span>Register</a>
+                                <?php else: ?>
+                                    <li class="nav-item dropdown no-arrow">
+                                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span
+                                                class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo e(Auth::user()->name); ?></span>
+                                            <img class="img-profile rounded-circle" src="Admin/img/undraw_profile.svg">
+                                        </a>
+                                        <!-- Dropdown - User Information -->
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                            aria-labelledby="userDropdown">
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Profile
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Settings
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Activity Log
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <form method="POST" action="<?php echo e(route('Admins.logout')); ?>">
+                                                <?php echo csrf_field(); ?>
+                                                <a href="#"
+                                                    onclick="event.preventDefault(); this.closest('form').submit();"
+                                                    class="dropdown-item">
+                                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    Logout
+                                                </a>
+                                            </form>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </nav>
 
                     </ul>
 
                 </nav>
-                <!-- End of Topbar --><?php /**PATH D:\Xampp\htdocs\GraduationThesis_PetE-commerce_G5\resources\views/Admins/Layouts/topbar.blade.php ENDPATH**/ ?>
+                <!-- End of Topbar -->
+<?php /**PATH D:\Xampp\htdocs\GraduationThesis_PetE-commerce_G5\resources\views/Admins/Layouts/topbar.blade.php ENDPATH**/ ?>

@@ -53,14 +53,14 @@
                                     <form action="{{ route('Admins.postLogin') }}" method="POST" class="user">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" name="username" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter User Name ...">
+                                            <input type="email" name="email" id="email" class="form-control form-control-user"
+                                                 aria-describedby="emailHelp"
+                                                placeholder="Enter Email ..." value="{{ old('email') }}" required autofocus>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password"
-                                                class="form-control form-control-user" id="exampleInputPassword"
-                                                placeholder="Password">
+                                                class="form-control form-control-user"
+                                                placeholder="Password" id="password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

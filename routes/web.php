@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\ClientsController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ManagePetController;
 use App\Http\Controllers\Admin\ManageProductsController;
 use App\Http\Controllers\Admin\ManageCategoriController;
+use App\Http\Controllers\AuthA\RegisterController;
+use App\Http\Controllers\AuthA\LoginController;
+use App\Http\Controllers\AuthA\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,13 +47,23 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
 // start route admin
 Route::prefix('Admins')->name('Admins.')->group(function () {
-    Route::get('/', [LoginController::class, 'getLogin'])->name('login');
+
+    Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
 
     Route::get('index/', [AdminController::class, 'index'])->name('index');
 
-    // route login 
-    Route::group(['prefix' => 'login'], function () {
-        Route::post('login/', [LoginController::class, 'postLogin'])->name('postLogin');
+    // group route của function login, register and logout
+    Route::group(['prefix' => 'AuthA'], function () 
+    {
+        Route::get('/register', [RegisterController::class, 'getRegister'])->name('Register');
+
+        Route::post('/register', [RegisterController::class, 'postRegister'])->name('postRegister');
+
+        Route::get('/login', [LoginController::class, 'getLogin'])->name('Login');
+
+        Route::post('/login', [LoginController::class, 'postLogin'])->name('postLogin');
+
+        Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
     });
 
     // group route của users
