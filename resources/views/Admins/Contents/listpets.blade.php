@@ -54,6 +54,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Id</th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Breed</th>
                                             <th>Gender</th>
@@ -67,6 +68,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Id</th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Breed</th>
                                             <th>Gender</th>
@@ -81,6 +83,11 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $value->pet_id }}</td>
+                                                <td>
+                                                    <div style="width: 100px; height: 100px; overflow: hidden;">
+                                                        <img src="{{ asset('Admin/img/' . $value->image_url) }}" style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
+                                                    </div>
+                                                </td>
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->breed }}</td>
                                                 <td>{{ $value->gender }}</td>

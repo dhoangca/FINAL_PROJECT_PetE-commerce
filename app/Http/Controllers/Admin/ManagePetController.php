@@ -25,8 +25,9 @@ class ManagePetController extends Controller
 
     public function getCreatePets()
     {
+        $categories = DB::table('categories')->get();
 
-        return view('Admins.Contents.createpets');
+        return view('Admins.Contents.createpets', compact("categories"));
 
     }
 
@@ -47,6 +48,10 @@ class ManagePetController extends Controller
 
         $pets->quantity = $request->quantity;
 
+        $pets->image_url = $request->image_url;
+
+        $pets->category_id = $request->category_id;
+
         $pets->save();
 
         return redirect()->route('Admins.managepets');
@@ -55,10 +60,11 @@ class ManagePetController extends Controller
 
     public function getEditPets($pet_id)
     {
+        $categories = DB::table('categories')->get();
 
         $data['cate'] = PetModel::find($pet_id);
 
-        return view('Admins.Contents.editpets',$data);
+        return view('Admins.Contents.editpets',$data , compact("categories"));
 
     }
 
@@ -77,7 +83,9 @@ class ManagePetController extends Controller
 
         $pets->quantity = $request->quantity;
 
-        $pets->user_id = $request->user_id;
+        $pets->image_url = $request->image_url;
+
+        $pets->category_id = $request->category_id;
 
         $pets->save();
 

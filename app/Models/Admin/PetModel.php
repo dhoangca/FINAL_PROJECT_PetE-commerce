@@ -11,7 +11,7 @@ class PetModel extends Model
 
     protected $table = "pets"; 
 
-    protected $fillable=['name','breed','gender','description','quantity','user_id ','category_id','created_at','updated_at'];
+    protected $fillable=['name','breed','gender','description','quantity','image_url','user_id ','category_id','created_at','updated_at'];
 
     protected $primaryKey ='pet_id';
 

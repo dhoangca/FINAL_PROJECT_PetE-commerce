@@ -40,6 +40,22 @@
                     <label for=""> Quantity </label>
                     <input type="text" class="form-control" name="quantity" placeholder="Quantity ...">
                 </div>
+                <div class="mb-3">
+                    <label for="imageInput">Image</label>
+                    <div class="input-group">
+                        <label class="input-group-text" for="imageInput"><input type="file" id="imageInput" name="image_url" accept="image/*"></label>
+                    </div>
+                </div> 
+                <div class="mb-3">
+                    @if($categories != null)
+                    <label for=""> Categori </label>
+                    <select id="inputCategori" class="form-control" name="category_id">
+                        @foreach($categories as $categori)
+                            <option value="{{$categori->category_id}}">{{$categori->name}}</option>
+                        @endforeach
+                    </select>
+                    @endif
+                </div>
                 <button type="submit" class="btn btn-info"> Create </button>
                 <a href="{{asset('Admins/Pets/managepets')}}" class="btn btn-warning">back</a>
 

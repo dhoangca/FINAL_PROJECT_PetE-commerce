@@ -42,6 +42,16 @@
                     <label for=""> Quantity </label>
                     <input type="text" class="form-control" name="quantity" value ="{{$cate->quantity}}" placeholder="Quantity ...">
                 </div>
+                <div class="mb-3">
+                    @if($categories != null)
+                    <label for=""> Categori </label>
+                    <select id="inputCategori" class="form-control" name="category_id">
+                        @foreach($categories as $categori)
+                            <option value="{{$categori->category_id}}">{{$categori->name}}</option>
+                        @endforeach
+                    </select>
+                    @endif
+                </div>
                 <button type="submit" class="btn btn-info"> Edit </button>
                 <button type="reset" class="btn btn-primary">Reset Button</button>
                 <a href="{{asset('Admins/Pets/manageproducts')}}" class="btn btn-warning">Back</a>

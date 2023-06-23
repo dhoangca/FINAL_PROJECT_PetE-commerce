@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -18,7 +19,8 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2)->notNullable();
             $table->string('status')->notNullable();
             $table->unsignedInteger('payment_method_id')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('payment_method_id')->references('payment_method_id')->on('payment_methods');
         });
