@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ManagePetController;
 use App\Http\Controllers\Admin\ManageProductsController;
+use App\Http\Controllers\Admin\ManageCategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,24 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
         Route::post('edit/{id}', [ManageProductsController::class, 'postEditProducts']);
 
         Route::get('delete/{id}', [ManageProductsController::class, 'delete']);
+    });
+
+    // group route of categori
+    Route::group(['prefix' => 'Categoris'], function () {
+        
+        Route::get('listcategoris/', [ManageCategoriController::class, 'listcategoris'])->name('listcategoris');
+        
+        Route::get('managecategoris/', [ManageCategoriController::class, 'managecategoris'])->name('managecategoris');
+
+        Route::get('create/', [ManageCategoriController::class, 'getCreateCategori'])->name('create');
+
+        Route::post('create/', [ManageCategoriController::class, 'postCreateCategori']);
+        
+        Route::get('edit/{id}', [ManageCategoriController::class, 'getEditCategori']);
+
+        Route::post('edit/{id}', [ManageCategoriController::class, 'postEditCategori']);
+
+        Route::get('delete/{id}', [ManageCategoriController::class, 'delete']);
     });
 
 });

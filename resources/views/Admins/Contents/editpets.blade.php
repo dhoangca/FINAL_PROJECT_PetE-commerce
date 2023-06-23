@@ -41,8 +41,20 @@
                     <input type="text" class="form-control" name="quantity" value ="{{$cate->quantity}}" placeholder="Quantity ...">
                 </div>
                 <div class="mb-3">
-                    <label for=""> User ID  </label>
-                    <input type="text" class="form-control" name="user_id" value ="{{$cate->user_id}}" placeholder="User ID ...">
+                    <label for="imageInput">Image</label>
+                    <div class="input-group">
+                        <label class="input-group-text" for="imageInput"><input type="file" id="imageInput" name="image_url" value ="{{$cate->image_url}}" accept="image/*"></label>
+                    </div>
+                </div> 
+                <div class="mb-3">
+                    @if($categories != null)
+                    <label for=""> Categori </label>
+                    <select id="inputCategori" class="form-control" name="category_id">
+                        @foreach($categories as $categori)
+                            <option value="{{$categori->category_id}}">{{$categori->name}}</option>
+                        @endforeach
+                    </select>
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-info"> Edit </button>
                 <button type="reset" class="btn btn-primary">Reset Button</button>

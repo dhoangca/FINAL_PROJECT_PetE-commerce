@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\ProductModel;
+use Illuminate\Support\Facades\DB;
 
 class ManageProductsController extends Controller
 {
@@ -24,8 +25,9 @@ class ManageProductsController extends Controller
 
     public function getCreateProducts()
     {
+        $categories = DB::table('categories')->get();
 
-        return view('Admins.Contents.createproducts');
+        return view('Admins.Contents.createproducts', compact("categories"));
 
     }
 
@@ -46,6 +48,8 @@ class ManageProductsController extends Controller
 
         $products->quantity = $request->quantity;
 
+        $products->category_id = $request->category_id;
+
         // $products->category_id = $request->category_id;
 
         $products->save();
@@ -56,10 +60,11 @@ class ManageProductsController extends Controller
 
     public function getEditProducts($product_id)
     {
+        $categories = DB::table('categories')->get();
 
         $data['cate'] = ProductModel::find($product_id);
 
-        return view('Admins.Contents.editproducts',$data);
+        return view('Admins.Contents.editproducts',$data, compact("categories"));
 
     }
 
@@ -77,6 +82,8 @@ class ManageProductsController extends Controller
         $products->image = $request->image;
 
         $products->quantity = $request->quantity;
+
+        $products->category_id = $request->category_id;
 
         $products->save();
 

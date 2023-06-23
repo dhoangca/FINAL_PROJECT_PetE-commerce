@@ -85,6 +85,24 @@
                 </div>
             </div>
         </li>
+
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategori"
+                aria-expanded="true" aria-controls="collapseCategori">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Categoris management</span>
+            </a>
+            <div id="collapseCategori" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">All Functions</h6>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Categoris/listcategoris')); ?>">List</a>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Categoris/managecategoris')); ?>">Integrated management
+                    </a>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Categoris/create')); ?>">Add</a>
+                </div>
+            </div>
+        </li>
     
         <!-- Divider -->
         <hr class="sidebar-divider">

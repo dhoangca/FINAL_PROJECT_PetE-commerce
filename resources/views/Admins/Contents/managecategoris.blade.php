@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View the list of Pets</title>
+    <title>View the list of Categoris</title>
 
     <!-- Custom fonts for this template -->
     <link href="Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +39,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">View the list of Pets</h1>
+                    <h1 class="h3 mb-2 text-gray-800">View the list of Categoris</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
@@ -54,12 +54,8 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Id</th>
-                                            <th>Image</th>
                                             <th>Name</th>
-                                            <th>Breed</th>
-                                            <th>Gender</th>
                                             <th>Description</th>
-                                            <th>Quantity</th>
                                             <th>Creation date</th>
                                             <th>Updated date</th>
                                             <th>Action</th>
@@ -69,37 +65,25 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Id</th>
-                                            <th>Image</th>
                                             <th>Name</th>
-                                            <th>Breed</th>
-                                            <th>Gender</th>
                                             <th>Description</th>
-                                            <th>Quantity</th>
                                             <th>Creation date</th>
                                             <th>Updated date</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($pets as $key => $value)
+                                        @foreach ($categoris as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $value->pet_id }}</td>
-                                                <td>
-                                                    <div style="width: 100px; height: 100px; overflow: hidden;">
-                                                        <img src="{{ asset('Admin/img/' . $value->image_url) }}" style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
-                                                    </div>
-                                                </td>
-                                                <td>{{ $value->name }}</td>
-                                                <td>{{ $value->breed }}</td>
-                                                <td>{{ $value->gender }}</td>
-                                                <td>{{ $value->description }}</td>
-                                                <td>{{ $value->quantity }}</td>
+                                                <td>{{ $value->category_id }}</td>
+                                                <td>{{ $value->name }}</td>                                               
+                                                <td>{{ $value->description }}</td>                                               
                                                 <td>{{ $value->created_at }}</td>
                                                 <td>{{ $value->updated_at }}</td>
                                                 <td>               
-                                                    <a href="{{asset('Admins/Pets/edit/'.$value->pet_id)}}" class="btn btn-primary edit"><span class="glyphicon glyphicon-edit"> </span> Edit</a>
-                                                    <a href="{{asset('Admins/Pets/delete/'.$value->pet_id)}}" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span>Delete</a>               
+                                                    <a href="{{asset('Admins/Categoris/edit/'.$value->category_id)}}" class="btn btn-primary edit"><span class="glyphicon glyphicon-edit"> </span> Edit</a>
+                                                    <a href="{{asset('Admins/Categoris/delete/'.$value->category_id)}}" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span>Delete</a>               
                                                 </td> 
                                             </tr>
                                         @endforeach

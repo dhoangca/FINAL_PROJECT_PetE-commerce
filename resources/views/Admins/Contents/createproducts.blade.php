@@ -42,10 +42,16 @@
                     <label for=""> Quantity </label>
                     <input type="text" class="form-control" name="quantity" placeholder="Quantity ...">
                 </div>
-                {{-- <div class="mb-3">
-                    <label for=""> Category ID </label>
-                    <input type="text" class="form-control" name="category_id" placeholder="Category ID ...">
-                </div> --}}
+                <div class="mb-3">
+                    @if($categories != null)
+                    <label for=""> Categori </label>
+                    <select id="inputCategori" class="form-control" name="category_id">
+                        @foreach($categories as $categori)
+                            <option value="{{$categori->category_id}}">{{$categori->name}}</option>
+                        @endforeach
+                    </select>
+                    @endif
+                </div>              
                 <button type="submit" class="btn btn-info"> Create </button>
                 <a href="{{asset('Admins/Products/manageproducts')}}" class="btn btn-warning">back</a>
 
