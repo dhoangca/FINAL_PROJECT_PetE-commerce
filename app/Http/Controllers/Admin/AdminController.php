@@ -11,5 +11,9 @@ class AdminController extends Controller
     {
         return view ('Admins.Contents.index');
     }
+    public function welcome()
+    {
+        return view ('Admins.Contents.welcome');
+    }
 
 }
