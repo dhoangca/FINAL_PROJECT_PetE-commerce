@@ -33,6 +33,10 @@
                     <input type="text" class="form-control" name="gender" value ="{{$cate->gender}}" placeholder="Gender ...">
                 </div>
                 <div class="mb-3">
+                    <label for=""> Price </label>
+                    <input type="text" class="form-control" name="price" value ="{{$cate->price}}" placeholder="Price ...">
+                </div>
+                <div class="mb-3">
                     <label for="">Description</label>
                     <input type="text" class="form-control" name="description" value ="{{$cate->description}}" placeholder="Description ..." >
                 </div>

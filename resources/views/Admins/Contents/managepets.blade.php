@@ -58,6 +58,7 @@
                                             <th>Name</th>
                                             <th>Breed</th>
                                             <th>Gender</th>
+                                            <th>Price</th>
                                             <th>Description</th>
                                             <th>Quantity</th>
                                             <th>Creation date</th>
@@ -73,6 +74,7 @@
                                             <th>Name</th>
                                             <th>Breed</th>
                                             <th>Gender</th>
+                                            <th>Price</th>
                                             <th>Description</th>
                                             <th>Quantity</th>
                                             <th>Creation date</th>
@@ -93,6 +95,7 @@
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->breed }}</td>
                                                 <td>{{ $value->gender }}</td>
+                                                <td>{{ $value->price }}</td>
                                                 <td>{{ $value->description }}</td>
                                                 <td>{{ $value->quantity }}</td>
                                                 <td>{{ $value->created_at }}</td>

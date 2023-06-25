@@ -44,6 +44,8 @@ class ManagePetController extends Controller
 
         $pets->gender = $request->gender;
 
+        $pets->price = $request->price;
+
         $pets->description = $request->description;
 
         $pets->quantity = $request->quantity;
@@ -78,6 +80,8 @@ class ManagePetController extends Controller
         $pets->breed = $request->breed;
 
         $pets->gender = $request->gender;
+
+        $pets->price = $request->price;
 
         $pets->description = $request->description;
 

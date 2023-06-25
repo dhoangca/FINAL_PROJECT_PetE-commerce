@@ -60,6 +60,8 @@
                                             <th>Address</th>
                                             <th>Phone Number</th>
                                             <th>Status</th>
+                                            <th>Creation date</th>
+                                            <th>Updated date</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -72,6 +74,8 @@
                                             <th>Address</th>
                                             <th>Phone Number</th>
                                             <th>Status</th>
+                                            <th>Creation date</th>
+                                            <th>Updated date</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -85,6 +89,8 @@
                                                 <td>{{ $value->address }}</td>
                                                 <td>{{ $value->phone_number }}</td>
                                                 <td>{{ $value->status }}</td>
+                                                <td>{{ $value->created_at }}</td>
+                                                <td>{{ $value->updated_at }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
