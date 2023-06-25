@@ -60,6 +60,8 @@
                                             <th>Address</th>
                                             <th>Phone Number</th>
                                             <th>Status</th>
+                                            <th>Creation date</th>
+                                            <th>Updated date</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -72,6 +74,8 @@
                                             <th>Address</th>
                                             <th>Phone Number</th>
                                             <th>Status</th>
+                                            <th>Creation date</th>
+                                            <th>Updated date</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -85,6 +89,8 @@
                                                 <td><?php echo e($value->address); ?></td>
                                                 <td><?php echo e($value->phone_number); ?></td>
                                                 <td><?php echo e($value->status); ?></td>
+                                                <td><?php echo e($value->created_at); ?></td>
+                                                <td><?php echo e($value->updated_at); ?></td>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>

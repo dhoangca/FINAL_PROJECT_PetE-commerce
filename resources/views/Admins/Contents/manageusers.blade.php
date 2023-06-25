@@ -60,6 +60,8 @@
                                 <th>Address</th>
                                 <th>Phone Number</th>
                                 <th>Status</th>
+                                <th>Creation date</th>
+                                <th>Updated date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -73,6 +75,8 @@
                                 <th>Address</th>
                                 <th>Phone Number</th>
                                 <th>Status</th>
+                                <th>Creation date</th>
+                                <th>Updated date</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -87,6 +91,8 @@
                                     <td>{{ $value->address }}</td>
                                     <td>{{ $value->phone_number }}</td>
                                     <td>{{ $value->status }}</td>
+                                    <td>{{ $value->created_at }}</td>
+                                    <td>{{ $value->updated_at }}</td>
                                     <td>
                                         <!-- Block/Unblock User Button -->
                                         @if ($value->status == 'active')

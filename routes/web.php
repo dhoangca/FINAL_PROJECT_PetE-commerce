@@ -10,6 +10,11 @@ use App\Http\Controllers\Admin\ManageCategoriController;
 use App\Http\Controllers\AuthA\RegisterController;
 use App\Http\Controllers\AuthA\LoginController;
 use App\Http\Controllers\AuthA\LogoutController;
+use App\Http\Controllers\AuthU\RegisterUController;
+use App\Http\Controllers\AuthU\LoginUController;
+use App\Http\Controllers\AuthU\LogoutUController;
+use App\Http\Controllers\Clients\SearchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,21 +29,36 @@ use App\Http\Controllers\AuthA\LogoutController;
 
 // start route font-end
 Route::prefix('Clients')->name('Clients.')->group(function () {
+
+    Route::get('/', [ClientsController::class, 'index'])->name('index');
+
+    // group route của function login, register and logout
+    Route::group(['prefix' => 'AuthU'], function () {
+        Route::get('register/', [RegisterUController::class, 'getRegisterU'])->name('Register');
+
+        Route::post('register/', [RegisterUController::class, 'postRegisterU'])->name('postRegisterU');
+
+        Route::get('login/', [LoginUController::class, 'getLoginU'])->name('Login');
+
+        Route::post('login/', [LoginUController::class, 'postLoginU'])->name('postLoginU');
+
+        Route::post('logout/', [LogoutUController::class, 'logoutU'])->name('logout');
+    });
+
     // route pages contents clients
     Route::group(['prefix' => 'Contents'], function () {
-        Route::get('/', [ClientsController::class, 'index'])->name('index');
 
-        Route::get('shop', [ClientsController::class, 'shop'])->name('shop');
+        Route::get('shop/', [ClientsController::class, 'shop'])->name('shop');
 
-        Route::get('shopdetail', [ClientsController::class, 'shopdetail'])->name('shopdetail');
+        Route::get('shopdetail/', [ClientsController::class, 'shopdetail'])->name('shopdetail');
 
-        Route::get('cart', [ClientsController::class, 'cart'])->name('cart');
+        Route::get('cart/', [ClientsController::class, 'cart'])->name('cart');
 
-        Route::get('checkout', [ClientsController::class, 'checkout'])->name('checkout');
+        Route::get('checkout/', [ClientsController::class, 'checkout'])->name('checkout');
 
-        Route::get('contact', [ClientsController::class, 'contact'])->name('contact');
+        Route::get('contact/', [ClientsController::class, 'contact'])->name('contact');
 
-        // Route::get('search',[ClientsController::class,'search'])->name('search');
+        Route::get('search/',[SearchController::class,'search'])->name('search');
     });
 });
 // end route font-end
@@ -54,15 +74,15 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
     // group route của function login, register and logout
     Route::group(['prefix' => 'AuthA'], function () {
-        Route::get('/register', [RegisterController::class, 'getRegister'])->name('Register');
+        Route::get('register/', [RegisterController::class, 'getRegister'])->name('Register');
 
-        Route::post('/register', [RegisterController::class, 'postRegister'])->name('postRegister');
+        Route::post('register/', [RegisterController::class, 'postRegister'])->name('postRegister');
 
-        Route::get('/login', [LoginController::class, 'getLogin'])->name('Login');
+        Route::get('login/', [LoginController::class, 'getLogin'])->name('Login');
 
-        Route::post('/login', [LoginController::class, 'postLogin'])->name('postLogin');
+        Route::post('login/', [LoginController::class, 'postLogin'])->name('postLogin');
 
-        Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+        Route::post('logout/', [LogoutController::class, 'logout'])->name('logout');
     });
 
     // group route của users

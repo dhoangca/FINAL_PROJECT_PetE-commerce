@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('name')->notNullable();
             $table->string('breed')->notNullable();
             $table->string('gender')->notNullable();
+            $table->decimal('price', 10, 2)->notNullable();
             $table->string('description')->nullable();
             $table->integer('quantity')->notNullable();
             $table->string('image_url')->notNullable();
+            $table->string('status')->default('Stocking');
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('category_id')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
