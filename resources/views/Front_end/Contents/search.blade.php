@@ -7,6 +7,8 @@
 <!-- navbar -->
 @INCLUDE('Front_end.Layouts.navbar')
 
+<!-- Search product and pet-->
+
 {{-- @section('content_index') --}}
 
 <!-- Breadcrumb Start -->
