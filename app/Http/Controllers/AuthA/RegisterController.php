@@ -41,7 +41,7 @@ class RegisterController extends Controller
     //     return $validator->validate();
     // }
 
-    // 
+    // fhggfdghjh
 
     public function postRegister(Request $request)
     {
