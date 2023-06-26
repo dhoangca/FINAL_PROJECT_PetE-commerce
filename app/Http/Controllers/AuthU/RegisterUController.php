@@ -14,7 +14,7 @@ class RegisterUController extends Controller
     {
         return view('Auth.registeru');
     }
-
+    // Edit done
     public function validateUserInput(array $data)
     {
         $rules = [

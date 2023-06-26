@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page Sign up for user-->
 <head>
     <base href="{{ asset('') }}">
     <meta charset="utf-8">
