@@ -13,6 +13,8 @@
 <!-- support -->
 @INCLUDE('Front_end.Layouts.featured')
 
+<!-- View website-->
+
 {{-- @section('content_index') --}}
 <!-- Categories Start -->
 <div class="container-fluid pt-5">
