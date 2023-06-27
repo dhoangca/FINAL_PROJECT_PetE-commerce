@@ -51,6 +51,10 @@
                     </div>
                 </div> 
                 <div class="mb-3">
+                    <label for=""> Status </label>
+                    <input type="text" class="form-control" name="status" value ="{{$cate->status}}" placeholder="Status ...">
+                </div>
+                <div class="mb-3">
                     @if($categories != null)
                     <label for=""> Categori </label>
                     <select id="inputCategori" class="form-control" name="category_id">

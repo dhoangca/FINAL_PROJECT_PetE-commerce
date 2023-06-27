@@ -59,6 +59,7 @@
                                             <th>Description</th>
                                             <th>Price</th>                                            
                                             <th>Quantity</th>
+                                            <th>Status</th>
                                             <th>Creation date</th>
                                             <th>Updated date</th>
                                             <th>Action</th>
@@ -73,6 +74,7 @@
                                             <th>Description</th>
                                             <th>Price</th>                                            
                                             <th>Quantity</th>
+                                            <th>Status</th>
                                             <th>Creation date</th>
                                             <th>Updated date</th>
                                             <th>Action</th>
@@ -92,6 +94,7 @@
                                                 <td>{{ $value->description }}</td>
                                                 <td>{{ $value->price }}</td>                                                
                                                 <td>{{ $value->quantity }}</td>
+                                                <td>{{ $value->status }}</td>
                                                 <td>{{ $value->created_at }}</td>
                                                 <td>{{ $value->updated_at }}</td>
                                                 <td>               

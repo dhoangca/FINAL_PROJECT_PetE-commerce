@@ -52,6 +52,8 @@ class ManagePetController extends Controller
 
         $pets->image_url = $request->image_url;
 
+        $pets->status = $request->status;
+
         $pets->category_id = $request->category_id;
 
         $pets->save();
@@ -88,6 +90,8 @@ class ManagePetController extends Controller
         $pets->quantity = $request->quantity;
 
         $pets->image_url = $request->image_url;
+
+        $pets->status = $request->status;
 
         $pets->category_id = $request->category_id;
 

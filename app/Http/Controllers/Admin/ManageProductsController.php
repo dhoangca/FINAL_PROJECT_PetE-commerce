@@ -48,6 +48,8 @@ class ManageProductsController extends Controller
 
         $products->quantity = $request->quantity;
 
+        $products->status = $request->status;
+
         $products->category_id = $request->category_id;
 
         // $products->category_id = $request->category_id;
@@ -82,6 +84,8 @@ class ManageProductsController extends Controller
         $products->image = $request->image;
 
         $products->quantity = $request->quantity;
+
+        $products->status = $request->status;
 
         $products->category_id = $request->category_id;
 
