@@ -13,22 +13,18 @@
                         <a href="" class="nav-item nav-link">Chó Alaskan Malamute </a>
                         <a href="" class="nav-item nav-link">Chó Beagle </a>
                         <a href="" class="nav-item nav-link">Chó Corgis</a>
-                        <a href="" class="nav-item nav-link">Chó Golden Retriever </a>
-                        <a href="" class="nav-item nav-link">Chó Siberian Husky </a>
-                        <a href="" class="nav-item nav-link">Chó Poodles </a>
-                        <a href="" class="nav-item nav-link">Chó Pug </a>
                         <a href="" class="nav-item nav-link">Chó Samoyed </a>
                         <a href="" class="nav-item nav-link">Chó Husky America</a>
                         <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Phụ kiện thú cưng
-                                <i class="fa fa-angle-right float-right mt-1"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Phụ kiện thú cưng <i
+                                    class="fa fa-angle-right float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
                                 <a href="" class="dropdown-item">Thức ăn cho chó </a>
                                 <a href="" class="dropdown-item">Vòng cổ chuông cho chó</a>
                                 <a href="" class="dropdown-item">Bát cho chó</a>
                                 <a href="" class="dropdown-item">Cạo lông cho chó </a>
                             </div>
-                        </div>
+                    </div>
                 </nav>
             </div>
             <div class="col-lg-9">
@@ -48,9 +44,8 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pets <i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="{{ asset('Clients/Contents/cart') }}"
-                                        class="dropdown-item {{ request()->is('Clients/Contents/cart') ? 'active' : '' }}">Chó
-                                        Alaska
+                                    <a href="{{ asset('Clients/Contents/checkout') }}"
+                                        class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó Alaska
                                         Malamute</a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
