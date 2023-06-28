@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 'username' => 'pro',
                 'password' => Hash::make('456'),
                 'name' => 'Jane Smith',
-                'email' => 'jane@example.com',
+                'email' => 'pro@gmail.com',
                 'address' => '456 Avenue, Town',
                 'phone_number' => '0987654321',
                 'image' => null,
@@ -66,7 +66,8 @@ class UsersTableSeeder extends Seeder
                 'role' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ], [
+            ], 
+            [
                 'username' => 'chelinh',
                 'password' => Hash::make('123'),
                 'name' => 'Che Linh',
