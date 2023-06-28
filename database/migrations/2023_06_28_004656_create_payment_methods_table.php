@@ -12,17 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Users table
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('user_id');
-            $table->string('username')->nullable();
-            $table->string('password')->notNullable();
-            $table->string('name')->nullable();
-            $table->string('email')->notNullable();
-            $table->string('address')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('status')->default('active');
-            $table->rememberToken();
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->increments('payment_method_id');
+            $table->string('payment_method_name')->notNullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -33,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('payment_methods');
     }
 };
