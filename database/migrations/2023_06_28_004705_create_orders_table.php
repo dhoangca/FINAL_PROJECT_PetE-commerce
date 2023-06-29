@@ -17,11 +17,12 @@ return new class extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->date('order_date')->notNullable();
             $table->decimal('total_amount', 10, 2)->notNullable();
-            $table->string('status')->notNullable();
+            $table->unsignedInteger('status_id')->nullable();
             $table->unsignedInteger('payment_method_id')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('status_id')->references('status_id')->on('status');
             $table->foreign('payment_method_id')->references('payment_method_id')->on('payment_methods');
         });
     }
