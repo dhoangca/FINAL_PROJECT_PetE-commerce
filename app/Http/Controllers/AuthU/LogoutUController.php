@@ -12,6 +12,6 @@ class LogoutUController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('Clients.index');
+        return redirect()->route('index');
     }
 }
