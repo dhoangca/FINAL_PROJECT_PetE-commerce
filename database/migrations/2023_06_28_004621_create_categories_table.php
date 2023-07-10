@@ -14,11 +14,13 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('category_id');
-            $table->string('name')->notNullable();
+            $table->string('name')->nullable(false);
             $table->string('description')->nullable();
+            $table->string('type')->nullable(false);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
+        
     }
 
     /**
