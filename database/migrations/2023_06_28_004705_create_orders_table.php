@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->date('order_date')->notNullable();
             $table->decimal('total_amount', 10, 2)->notNullable();
+            $table->string('code')->unique()->nullable();
             $table->unsignedInteger('status_id')->nullable();
             $table->unsignedInteger('payment_method_id')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

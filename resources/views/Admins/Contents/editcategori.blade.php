@@ -27,7 +27,11 @@
                 <div class="mb-3">
                     <label for="">Description</label>
                     <input type="text" class="form-control" name="description" value ="{{$cate->description}}" placeholder="Description ..." >
-                </div>                      
+                </div> 
+                <div class="mb-3">
+                    <label for="">Type</label>
+                    <input type="text" class="form-control" name="type" placeholder="Type ..." >
+                </div>                     
                 <button type="submit" class="btn btn-info"> Edit </button>
                 <button type="reset" class="btn btn-primary">Reset Button</button>
                 <a href="{{asset('Admins/Categoris/managecategoris')}}" class="btn btn-warning">Back</a>

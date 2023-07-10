@@ -12,23 +12,45 @@ class ClientsController extends Controller
 {
     public function index()
     {
-        $categories=CategoriModel::all();
+        $categories = CategoriModel::all();
 
         $pets=PetModel::all();
 
         $products=ProductModel::all();
 
-        return view ('Front_end.Contents.index', compact('categories', 'pets', 'products',));
+        return view ('Front_end.Contents.index', compact('categories', 'pets', 'products'));
     }
+
+    // public function navbar()
+    // {
+    //     $category = CategoriModel::where('type', 'pet')->get();
+
+    //     return view ('Front_end.Layouts.navbar', compact('category'));
+    // }
 
     public function shop()
     {
-        return view ('Front_end.Contents.shop');
+        $products=ProductModel::all();
+
+        return view ('Front_end.Contents.shop', compact('products'));
     }
 
-    public function shopdetail()
+    public function shopdetailproducts(Request $request)
+    {       
+        $ProductsDetail = ProductModel::WHERE('product_id',$request->id)->first();        
+
+        $products=ProductModel::all();
+
+        return view ('Front_end.Contents.shopdetailproducts', compact('products', 'ProductsDetail'));
+    }
+
+    public function shopdetailpet(Request $request)
     {
-        return view ('Front_end.Contents.shopdetail');
+        $PetsDetail = PetModel::WHERE('pet_id',$request->id)->first();        
+
+        $pets=PetModel::all();        
+
+        return view ('Front_end.Contents.shopdetailpet', compact('pets', 'PetsDetail'));
     }
 
     public function cart()

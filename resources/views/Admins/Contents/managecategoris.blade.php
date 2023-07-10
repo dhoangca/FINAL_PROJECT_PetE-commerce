@@ -56,6 +56,7 @@
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Description</th>
+                                            <th>Type</th>
                                             <th>Creation date</th>
                                             <th>Updated date</th>
                                             <th>Action</th>
@@ -67,6 +68,7 @@
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Description</th>
+                                            <th>Type</th>
                                             <th>Creation date</th>
                                             <th>Updated date</th>
                                             <th>Action</th>
@@ -78,7 +80,8 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $value->category_id }}</td>
                                                 <td>{{ $value->name }}</td>                                               
-                                                <td>{{ $value->description }}</td>                                               
+                                                <td>{{ $value->description }}</td>    
+                                                <td>{{ $value->type }}</td>                                            
                                                 <td>{{ $value->created_at }}</td>
                                                 <td>{{ $value->updated_at }}</td>
                                                 <td>               
