@@ -14,6 +14,8 @@ use App\Http\Controllers\AuthU\RegisterUController;
 use App\Http\Controllers\AuthU\LoginUController;
 use App\Http\Controllers\AuthU\LogoutUController;
 use App\Http\Controllers\Clients\SearchController;
+use App\Http\Controllers\Admin\ManageOrdersController;
+use App\Http\Controllers\Clients\CategoriController;
 
 
 /*
@@ -26,11 +28,11 @@ use App\Http\Controllers\Clients\SearchController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route index
+Route::get('/', [ClientsController::class, 'index'])->name('index');
 
 // start route font-end
 Route::prefix('Clients')->name('Clients.')->group(function () {
-
-    Route::get('/', [ClientsController::class, 'index'])->name('index');
 
     // group route của function login, register and logout
     Route::group(['prefix' => 'AuthU'], function () {
@@ -50,7 +52,9 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::get('shop/', [ClientsController::class, 'shop'])->name('shop');
 
-        Route::get('shopdetail/', [ClientsController::class, 'shopdetail'])->name('shopdetail');
+        Route::get('shopdetailproducts/{id}', [ClientsController::class, 'shopdetailproducts'])->name('shopdetailproducts');
+
+        Route::get('shopdetailpet/{id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');
 
         Route::get('cart/', [ClientsController::class, 'cart'])->name('cart');
 
@@ -59,6 +63,8 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
         Route::get('contact/', [ClientsController::class, 'contact'])->name('contact');
 
         Route::get('search/',[SearchController::class,'search'])->name('search');
+
+        Route::get('filtered-products-and-pets/{category_id}',[CategoriController::class,'filterByCategory'])->name('filtered-products-and-pets');
     });
 });
 // end route font-end
@@ -87,9 +93,9 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
     // group route của users
     Route::group(['prefix' => 'users'], function () {
-        // route của trang quản lý users
+        
         Route::get('listuser/', [UserController::class, 'listuser'])->name('listuser');
-        // route của trang bảng users
+        
         Route::get('manageusers/', [UserController::class, 'manageusers'])->name('manageusers');
 
         // Route for blocking a user
@@ -162,6 +168,21 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
         Route::get('delete/{id}', [ManageCategoriController::class, 'delete']);
     });
+
+    // group route of order
+    // Route::group(['prefix' => 'Orders'], function () {
+
+    //     Route::get('listorders/', [ManageOrdersController::class, 'listorders'])->name('listorders');
+
+    //     Route::get('manageorders/', [ManageOrdersController::class, 'manageorders'])->name('manageorders');
+
+    //     Route::get('edit/{id}', [ManageOrdersController::class, 'getEditOrders']);
+
+    //     Route::post('edit/{id}', [ManageOrdersController::class, 'postEditOrders']);
+
+    //     Route::get('delete/{id}', [ManageOrdersController::class, 'delete']);
+    // });
+
 });
 
 

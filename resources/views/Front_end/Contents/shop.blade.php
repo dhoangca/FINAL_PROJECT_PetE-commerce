@@ -64,10 +64,14 @@
                     </div>
 
                 {{-- ------------------ hiển thị sản phẩm ---------------- --}}
+                @foreach ($products as $product )
                     <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="Front_end/img/product-1.jpg" alt="">
+                                <div style="width: 350px; height: 300px; overflow: hidden;">
+                                    <img src="{{ asset('Admin/img/' . $product->image) }}"
+                                        style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
+                                </div>
                                 <div class="product-action">
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
@@ -76,9 +80,10 @@
                                 </div>
                             </div>
                             <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                                <a class="h6 text-decoration-none text-truncate" href="">{{ $product->name }}</a>
                                 <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                    <h5>${{ $product    ->price }}</h5>
+                                    {{-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> --}}
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center mb-1">
                                     <small class="fa fa-star text-primary mr-1"></small>
@@ -91,6 +96,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 {{-- =================================================================================== --}}
                     <div class="col-12">
                         <nav>

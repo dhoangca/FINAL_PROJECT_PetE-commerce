@@ -31,9 +31,13 @@
                             <img class="img-fluid" src="Front_end/img/categories-3.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>{{ $value->name }}</h6>
+                            <a href="{{ asset('Clients/Contents/filtered-products-and-pets/'.$value->category_id) }}"
+                                style="text-decoration: none; color: #000;">
+                                {{ $value->name }}
+                            </a>
                             {{-- <small class="text-body">100 Products</small> --}}
                         </div>
+                        
                     </div>
                 </a>
             </div>
@@ -63,7 +67,7 @@
                                     class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{{asset('Clients/Contents/shopdetailpet/'.$value->pet_id)}}"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -135,7 +139,7 @@
                                     class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="{{asset('Clients/Contents/shopdetailproducts/'.$value->product_id)}}"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">

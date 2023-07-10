@@ -7,25 +7,35 @@
                     <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
+
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
-                        <a href="" class="nav-item nav-link">Chó Alaskan Malamute </a>
-                        <a href="" class="nav-item nav-link">Chó Beagle </a>
-                        <a href="" class="nav-item nav-link">Chó Corgi</a>
-                        <a href="" class="nav-item nav-link">Chó Samoyed </a>
-                        <a href="" class="nav-item nav-link">Chó Husky America</a>
+                        {{-- @if ($category)
+                            @foreach ($category as $key => $value)
+                                @if ($value->type == 'pet')
+                                    <a href="{{ asset('Clients/Contents/filtered-products-and-pets/' . $value->category_id) }}"
+                                        class="nav-item nav-link">{{ $value->name }}</a>
+                                @endif
+                            @endforeach
+                        @endif --}}
+
                         <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Phụ kiện thú cưng <i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Phụ kiện thú
+                                cưng
+                                <i class="fa fa-angle-right float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Thức ăn cho chó </a>
-                                <a href="" class="dropdown-item">Vòng cổ chuông cho chó</a>
-                                <a href="" class="dropdown-item">Bát cho chó</a>
-                                <a href="" class="dropdown-item">Cạo lông cho chó </a>
+                                {{-- @foreach ($category as $key => $value)
+                                    @if ($value->type == 'Accessory')
+                                        <a href="{{ asset('Clients/Contents/filtered-products-and-pets/' . $value->category_id) }}"
+                                            class="dropdown-item">{{ $value->name }}</a>
+                                    @endif
+                                @endforeach --}}
                             </div>
+                        </div>
                     </div>
                 </nav>
+
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
@@ -38,60 +48,72 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{ asset('Clients') }}"
-                                class="nav-item nav-link {{ request()->is('Clients') ? 'active' : '' }}">Home</a>
+                            <a href="{{ asset('/') }}"
+                                class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pets <i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
-                                        class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó Alaska
-                                        Malamute</a>
+                                        class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
+                                        Alaska
+                                        Malamute
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
-                                        Beagle</a>
+                                        Beagle
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
-                                        Corgi</a>
+                                        Corgi
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
                                         Golden
-                                        Retriever</a>
+                                        Retriever
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
                                         Husky
-                                        Siberian</a>
+                                        Siberian
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
                                         Phốc
-                                        Sóc - Pomeranian</a>
+                                        Sóc - Pomeranian
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
-                                        Poodle</a>
+                                        Poodle
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
-                                        Pug</a>
+                                        Pug
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Chó
-                                        Samoyed</a>
+                                        Samoyed
+                                    </a>
                                     <hr>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Mèo
                                         Anh
-                                        (Dài + Ngắn)</a>
+                                        (Dài + Ngắn)
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Mèo
                                         Chân
-                                        Ngắn</a>
+                                        Ngắn
+                                    </a>
                                     <a href="{{ asset('Clients/Contents/checkout') }}"
                                         class="dropdown-item {{ request()->is('Clients/Contents/checkout') ? 'active' : '' }}">Mèo
                                         Tai
-                                        Cụp</a>
+                                        Cụp
+                                    </a>
                                 </div>
                             </div>
                             <a href="{{ asset('Clients/Contents/shop') }}"
-                                class="nav-item nav-link {{ request()->is('Clients/Contents/shop') ? 'active' : '' }}">Pet
-                                Accessories</a>
+                                class="nav-item nav-link {{ request()->is('Clients/Contents/shop') ? 'active' : '' }}">Products</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
                                         class="fa fa-angle-down mt-1"></i></a>
