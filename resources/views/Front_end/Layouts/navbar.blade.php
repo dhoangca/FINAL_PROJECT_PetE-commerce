@@ -12,7 +12,7 @@
                     <div class="navbar-nav w-100">
                         <a href="" class="nav-item nav-link">Chó Alaskan Malamute </a>
                         <a href="" class="nav-item nav-link">Chó Beagle </a>
-                        <a href="" class="nav-item nav-link">Chó Corgis</a>
+                        <a href="" class="nav-item nav-link">Chó Corgi</a>
                         <a href="" class="nav-item nav-link">Chó Samoyed </a>
                         <a href="" class="nav-item nav-link">Chó Husky America</a>
                         <div class="nav-item dropdown dropright">
