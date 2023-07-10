@@ -26,7 +26,7 @@ class LoginUController extends Controller
                 Auth::logout();
                 return redirect()->back()->withErrors(['account_blocked' => 'Your account has been blocked.']);
             }
-            return redirect('Clients');
+            return redirect('/');
         }
 
         return redirect()->back()->withErrors([
