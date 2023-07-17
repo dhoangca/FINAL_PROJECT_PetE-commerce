@@ -17,7 +17,7 @@ use App\Http\Controllers\Clients\SearchController;
 use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Clients\CategoriController;
 use App\Http\Controllers\Clients\CartController;
-
+//x
 
 /*
 |--------------------------------------------------------------------------
