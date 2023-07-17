@@ -10,62 +10,79 @@ use App\Models\Users\ProductModel;
 
 class ClientsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categories = CategoriModel::all();
 
-        $pets=PetModel::all();
+        $pets = PetModel::all();
 
-        $products=ProductModel::all();
+        $products = ProductModel::all();
 
-        return view ('Front_end.Contents.index', compact('categories', 'pets', 'products'));
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+        
+        $PetsDetail = PetModel::where('pet_id', $request->id)->first();
+
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
+
+        return view('Front_end.Contents.index', compact('categories', 'pets', 'products', 'category', 'PetsDetail', 'cartCount'));
     }
-
-    // public function navbar()
-    // {
-    //     $category = CategoriModel::where('type', 'pet')->get();
-
-    //     return view ('Front_end.Layouts.navbar', compact('category'));
-    // }
 
     public function shop()
     {
-        $products=ProductModel::all();
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+        $products = ProductModel::all();
 
-        return view ('Front_end.Contents.shop', compact('products'));
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
+
+        return view('Front_end.Contents.shop', compact('products', 'category', 'cartCount'));
     }
 
     public function shopdetailproducts(Request $request)
-    {       
-        $ProductsDetail = ProductModel::WHERE('product_id',$request->id)->first();        
+    {
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+        $ProductsDetail = ProductModel::where('product_id', $request->id)->first();
 
-        $products=ProductModel::all();
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
 
-        return view ('Front_end.Contents.shopdetailproducts', compact('products', 'ProductsDetail'));
+        $products = ProductModel::all();
+
+        return view('Front_end.Contents.shopdetailproducts', compact('products', 'ProductsDetail', 'category', 'cartCount'));
     }
 
     public function shopdetailpet(Request $request)
     {
-        $PetsDetail = PetModel::WHERE('pet_id',$request->id)->first();        
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
-        $pets=PetModel::all();        
+        $PetsDetail = PetModel::where('pet_id', $request->id)->first();
 
-        return view ('Front_end.Contents.shopdetailpet', compact('pets', 'PetsDetail'));
-    }
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
 
-    public function cart()
-    {
-        return view ('Front_end.Contents.cart');
+        $pets = PetModel::all();
+
+        return view('Front_end.Contents.shopdetailpet', compact('pets', 'PetsDetail', 'category', 'cartCount'));
     }
 
     public function checkout()
     {
-        return view ('Front_end.Contents.checkout');
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
+
+        return view('Front_end.Contents.checkout', compact('category', 'cartCount'));
     }
 
     public function contact()
     {
-        return view ('Front_end.Contents.contact');
-    }
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
+
+        return view('Front_end.Contents.contact', compact('category', 'cartCount'));
+    }
 }

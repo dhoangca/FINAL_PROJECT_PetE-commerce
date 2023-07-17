@@ -56,17 +56,20 @@
                             <div class="product-item bg-light mb-4">
                                 <div class="product-img position-relative overflow-hidden">
                                     <div style="width: 350px; height: 300px; overflow: hidden;">
-                                        <img src="{{ asset('Admin/img/' . $pet->image_url) }}"
+                                        <img src="{{ asset('Admin/img/' . $pet->image) }}"
                                             style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                                     </div>
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
-                                                class="fa fa-shopping-cart"></i></a>
+                                        <a class="btn btn-outline-dark btn-square"
+                                            href="{{ route('Clients.addToCart', ['item_id' => $pet->pet_id, 'item_type' => 'pet']) }}">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="far fa-heart"></i></a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
+                                        <a class="btn btn-outline-dark btn-square"
+                                            href="{{ asset('Clients/Contents/shopdetailpet/' . $pet->pet_id) }}"><i
                                                 class="fa fa-search"></i></a>
                                     </div>
                                 </div>
@@ -100,13 +103,16 @@
                                             style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                                     </div>
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
-                                                class="fa fa-shopping-cart"></i></a>
+                                        <a class="btn btn-outline-dark btn-square"
+                                            href="{{ route('Clients.addToCart', ['item_id' => $product->product_id, 'item_type' => 'product']) }}">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="far fa-heart"></i></a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
+                                        <a class="btn btn-outline-dark btn-square"
+                                            href="{{ asset('Clients/Contents/shopdetailproducts/' . $product->product_id) }}"><i
                                                 class="fa fa-search"></i></a>
                                     </div>
                                 </div>
