@@ -18,8 +18,14 @@ class CategoriController extends Controller
 
         $products = ProductModel::where('category_id', $categories->category_id)->get();
 
-        return view('Front_end.Contents.FilteredProductsAndPets', compact('categories', 'products', 'pets'));
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
+
+        return view('Front_end.Contents.FilteredProductsAndPets', compact('categories', 'products', 'pets', 'category', 'cartCount'));
     }
+
     // public function filterByType($type)
     // {
     //     $category = CategoriModel::where('type', $type)->first();

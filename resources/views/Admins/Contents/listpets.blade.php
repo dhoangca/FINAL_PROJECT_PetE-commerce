@@ -89,7 +89,7 @@
                                                 <td>{{ $value->pet_id }}</td>
                                                 <td>
                                                     <div style="width: 100px; height: 100px; overflow: hidden;">
-                                                        <img src="{{ asset('Admin/img/' . $value->image_url) }}" style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
+                                                        <img src="{{ asset('Admin/img/' . $value->image) }}" style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                                                     </div>
                                                 </td>
                                                 <td>{{ $value->name }}</td>

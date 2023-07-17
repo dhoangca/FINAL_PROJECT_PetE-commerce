@@ -16,6 +16,7 @@ use App\Http\Controllers\AuthU\LogoutUController;
 use App\Http\Controllers\Clients\SearchController;
 use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Clients\CategoriController;
+use App\Http\Controllers\Clients\CartController;
 
 
 /*
@@ -54,9 +55,7 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::get('shopdetailproducts/{id}', [ClientsController::class, 'shopdetailproducts'])->name('shopdetailproducts');
 
-        Route::get('shopdetailpet/{id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');
-
-        Route::get('cart/', [ClientsController::class, 'cart'])->name('cart');
+        Route::get('shopdetailpet/{id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');        
 
         Route::get('checkout/', [ClientsController::class, 'checkout'])->name('checkout');
 
@@ -65,6 +64,23 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
         Route::get('search/',[SearchController::class,'search'])->name('search');
 
         Route::get('filtered-products-and-pets/{category_id}',[CategoriController::class,'filterByCategory'])->name('filtered-products-and-pets');
+    });
+
+    // route Cart
+    Route::group(['prefix' =>'Cart'], function()
+    {
+        Route::get('cart/', [CartController::class, 'cart'])->name('cart');
+            
+        // Route::get('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
+
+        Route::post('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
+
+        Route::get('get-cart-count/', [CartController::class, 'getCartCount'])->name('getCartCount');
+
+        // Route::post('/update-cart/{id}',[CartController::class,'updatecart'])->name('updatecart')    ;
+
+        Route::delete('deletecart/{item_id}',[CartController::class,'delete'])->name('deletecart');
+            
     });
 });
 // end route font-end
