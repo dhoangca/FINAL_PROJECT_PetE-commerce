@@ -31,6 +31,7 @@
             <table class="table table-light table-borderless table-hover text-center mb-0">
                 <thead class="thead-dark">
                     <tr>
+                        <th>Choose</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
@@ -43,43 +44,57 @@
                     @if (session('cart') && count(session('cart')) > 0)
                         @foreach (session('cart') as $item_id => $details)
                             <tr>
+                                <td class="align-middle" style="text-align: center; margin">
+                                    <div class="form-check" style="margin-bottom: 11px; margin-left: 6px;">
+                                        <input class="form-check-input" type="checkbox" id="checkboxId"
+                                            name="checkboxName" value="" style="transform: scale(2);">
+                                    </div>
+                                </td>
                                 <td class="align-middle">
-                                    @if(isset($details['image']))
-                                        <img src="{{ asset('Admin/img/' . $details['image']) }}" alt="Pet Image" style="width: 90px; height: 90px;">
+                                    @if (isset($details['image']))
+                                        <img src="{{ asset('Admin/img/' . $details['image']) }}" alt="Pet Image"
+                                            style="width: 90px; height: 90px;">
                                     @else
                                         <p>No image available</p>
                                     @endif
-                                </td>                                
+                                </td>
                                 <td class="align-middle">{{ $details['name'] }}</td>
                                 <td class="align-middle">${{ $details['price'] }}</td>
                                 <td class="align-middle" style="text-align: center; max-width: 130px;">
                                     <div class="input-group quantity">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-primary btn-minus" type="button" data-item-id="{{ $item_id }}">
+                                            <button class="btn btn-primary btn-minus" type="button"
+                                                data-item-id="{{ $item_id }}">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center quantity-input"
-                                            id="quantity-{{ $item_id }}" value="{{ $details['quantity'] }}" readonly>
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary border-0 text-center quantity-input"
+                                            id="quantity-{{ $item_id }}" value="{{ $details['quantity'] }}"
+                                            readonly>
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary btn-plus" type="button" data-item-id="{{ $item_id }}">
+                                            <button class="btn btn-primary btn-plus" type="button"
+                                                data-item-id="{{ $item_id }}">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="align-middle" class="total-price" id="total-price-{{ $item_id }}">$<span id="price-{{ $item_id }}">{{ $details['price'] * $details['quantity'] }}</span></td>
-                                
-                                                      
+                                <td class="align-middle" class="total-price" id="total-price-{{ $item_id }}">$<span
+                                        id="price-{{ $item_id }}">{{ $details['price'] * $details['quantity'] }}</span>
+                                </td>
+
+
                                 <td class="align-middle">
-                                    <form action="{{ route('Clients.deletecart', ['item_id' => $item_id]) }}" method="POST">
+                                    <form action="{{ route('Clients.deletecart', ['item_id' => $item_id]) }}"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </form>
-                                </td>                                                               
+                                </td>
                             </tr>
                         @endforeach
                     @else
@@ -140,7 +155,9 @@
                         <h5>Total</h5>
                         <h5>$160</h5>
                     </div>
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                    <a href="{{ asset('Clients/Contents/checkout') }}" id="" style="text-decoration: none">
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                    </a>
                 </div>
             </div>
         </div>

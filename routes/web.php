@@ -57,7 +57,7 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::get('shopdetailpet/{id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');        
 
-        Route::get('checkout/', [ClientsController::class, 'checkout'])->name('checkout');
+        Route::get('checkout/', [ClientsController::class, 'checkout'])->name('checkout')->middleware('auth.user');
 
         Route::get('contact/', [ClientsController::class, 'contact'])->name('contact');
 
