@@ -32,7 +32,7 @@
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner bg-light">
                     <div class="carousel-item active">
-                        <img class="w-100 h-100" src="{{ asset('Admin/img/' . $PetsDetail->image_url) }}"
+                        <img class="w-100 h-100" src="{{ asset('Admin/img/' . $PetsDetail->image) }}"
                             alt="Image">
                     </div>
                     {{-- <div class="carousel-item">
@@ -138,8 +138,13 @@
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3 "><i class="fa fa-shopping-cart mr-1"></i> Add To
-                        Cart
+                    {{-- <a href="{{ route('Clients.addToCart', ['item_id' => $PetsDetail->pet_id, 'item_type' => 'pet']) }}" >
+                        <button class="btn btn-primary px-3" id="add-to-cart-button" onclick="addToCart()">
+                            <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+                        </button>
+                    </a> --}}
+                    <button class="btn btn-primary px-3" id="add-to-cart-button" data-pet-id="{{ $PetsDetail->pet_id }}">
+                        <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
                     </button>
                     <span style="margin-left: 10px;"></span>
                     <button class="btn btn-primary px-3"><i class="fa fa-money-bill mr-1"></i>
@@ -173,7 +178,7 @@
             <div class="bg-light p-30">
                 <div class="nav nav-tabs mb-4">
                     <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
+                    {{-- <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a> --}}
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
                 </div>
                 <div class="tab-content">
@@ -181,7 +186,7 @@
                         <h4 class="mb-3">Pets Description</h4>
                         <p>{{ $PetsDetail->description }}</p>
                     </div>
-                    <div class="tab-pane fade" id="tab-pane-2">
+                    {{-- <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Additional Information</h4>
                         <p>...</p>
                         <div class="row">
@@ -218,7 +223,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="tab-pane fade" id="tab-pane-3">
                         <div class="row">
                             <div class="col-md-6">
@@ -292,7 +297,7 @@
                     <div class="product-item bg-light">
                         <div class="product-img position-relative overflow-hidden">
                             <div style="width: 350px; height: 300px; overflow: hidden;">
-                                <img src="{{ asset('Admin/img/' . $pet->image_url) }}"
+                                <img src="{{ asset('Admin/img/' . $pet->image) }}"
                                     style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                             </div>
                             <div class="product-action">

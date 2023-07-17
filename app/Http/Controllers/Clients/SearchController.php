@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users\PetModel;
 use App\Models\Users\ProductModel;
+use App\Models\Users\CategoriModel;
 
 class SearchController extends Controller
 {
@@ -23,6 +24,11 @@ class SearchController extends Controller
                 ->orWhere('price', 'like', '%' . $query . '%');
         })->get();
 
-        return view('Front_end.Contents.search', compact('petResults', 'productResults', 'query'));
+        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+
+        // Assuming you have logic to calculate the cart count
+        $cartCount = 0; // Replace this with your actual cart count calculation logic
+
+        return view('Front_end.Contents.search', compact('petResults', 'productResults', 'query', 'category', 'cartCount'));
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->notNullable();
             $table->string('description')->nullable();
             $table->integer('quantity')->notNullable();
-            $table->string('image_url')->nullable();
+            $table->string('image')->nullable();
             $table->string('status')->default('Stocking');
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('category_id')->nullable();

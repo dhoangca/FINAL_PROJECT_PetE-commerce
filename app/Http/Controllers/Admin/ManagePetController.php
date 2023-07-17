@@ -50,7 +50,7 @@ class ManagePetController extends Controller
 
         $pets->quantity = $request->quantity;
 
-        $pets->image_url = $request->image_url;
+        $pets->image = $request->image;
 
         $pets->status = $request->status;
 
@@ -89,7 +89,7 @@ class ManagePetController extends Controller
 
         $pets->quantity = $request->quantity;
 
-        $pets->image_url = $request->image_url;
+        $pets->image = $request->image;
 
         $pets->status = $request->status;
 

@@ -47,7 +47,7 @@
                 <div class="mb-3">
                     <label for="imageInput">Image</label>
                     <div class="input-group">
-                        <label class="input-group-text" for="imageInput"><input type="file" id="imageInput" name="image_url" accept="image/*"></label>
+                        <label class="input-group-text" for="imageInput"><input type="file" id="imageInput" name="image" accept="image/*"></label>
                     </div>
                 </div> 
                 <div class="mb-3">

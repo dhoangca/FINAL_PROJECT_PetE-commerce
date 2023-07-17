@@ -136,11 +136,14 @@
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                        Cart
-                    </button>
+                    <a
+                        href="{{ route('Clients.addToCart', ['item_id' => $ProductsDetail->product_id, 'item_type' => 'product']) }}">
+                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                            Cart
+                        </button>
+                    </a>
                     <span style="margin-left: 10px;"></span>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Buy Now
+                    <button class="btn btn-primary px-3"><i class="fa fa-money-bill mr-1"></i> Buy Now
                     </button>
                 </div>
                 <div class="d-flex pt-2">
@@ -169,7 +172,7 @@
             <div class="bg-light p-30">
                 <div class="nav nav-tabs mb-4">
                     <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
+                    {{-- <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a> --}}
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
                 </div>
                 <div class="tab-content">
@@ -178,7 +181,7 @@
                         <p>{{ $ProductsDetail->description }}
                         </p>
                     </div>
-                    <div class="tab-pane fade" id="tab-pane-2">
+                    {{-- <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Additional Information</h4>
                         <p>...</p>
                         <div class="row">
@@ -215,7 +218,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="tab-pane fade" id="tab-pane-3">
                         <div class="row">
                             <div class="col-md-6">
