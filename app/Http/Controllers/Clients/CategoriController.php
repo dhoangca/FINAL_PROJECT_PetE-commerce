@@ -14,9 +14,11 @@ class CategoriController extends Controller
     {
         $categories = CategoriModel::findOrFail($category_id);
 
-        $pets = PetModel::where('category_id', $categories->category_id)->get();
+        $productsPerPage = 12; // Number of products per page
+        $products = ProductModel::where('category_id', $categories->category_id)->paginate($productsPerPage);
 
-        $products = ProductModel::where('category_id', $categories->category_id)->get();
+        $petsPerPage = 12; // Number of pets per page
+        $pets = PetModel::where('category_id', $categories->category_id)->paginate($petsPerPage);
 
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 

@@ -13,16 +13,18 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->get('query');
+        $productsPerPage = 12; // Number of products per page
+        $petsPerPage = 12; // Number of pets per page
 
         $petResults = PetModel::where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('name', 'like', '%' . $query . '%')
                 ->orWhere('price', 'like', '%' . $query . '%');
-        })->get();
+        })->paginate($petsPerPage);
 
         $productResults = ProductModel::where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('name', 'like', '%' . $query . '%')
                 ->orWhere('price', 'like', '%' . $query . '%');
-        })->get();
+        })->paginate($productsPerPage);
 
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 

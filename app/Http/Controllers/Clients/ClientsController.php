@@ -50,8 +50,11 @@ class ClientsController extends Controller
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
-        $products = ProductModel::all();
-
+        //phân trang
+        $productsPerPage = 12; // You can adjust this as per your requirement
+        $products = ProductModel::paginate($productsPerPage);
+        //end phân trang
+        
         $cartData = $this->getCartCount(); // Get both cart count and total amount
         $cartCount = $cartData['cartCount'];
         $totalAmount = $cartData['totalAmount'];
