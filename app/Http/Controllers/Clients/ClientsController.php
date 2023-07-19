@@ -16,73 +16,98 @@ class ClientsController extends Controller
 
         $pets = PetModel::all();
 
+        $bestSellingPets = PetModel::orderBy('sales', 'desc')->limit(4)->get();
+
         $products = ProductModel::all();
 
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
-        
-        $PetsDetail = PetModel::where('pet_id', $request->id)->first();
 
-        // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+        $cartCount = $cartData['cartCount'];
+        $totalAmount = $cartData['totalAmount'];
 
-        return view('Front_end.Contents.index', compact('categories', 'pets', 'products', 'category', 'PetsDetail', 'cartCount'));
+        return view('Front_end.Contents.index', compact('categories', 'pets', 'products', 'category',  'cartCount', 'totalAmount', 'bestSellingPets'));
+    }
+
+    public function getCartCount()
+    {
+        $cart = session()->get('cart') ?? [];
+        $cartCount = 0;
+        $totalAmount = 0;
+
+        foreach ($cart as $item) {
+            $cartCount += $item['quantity'];
+            $totalAmount += $item['quantity'] * $item['price'];
+        }
+
+        return [
+            'cartCount' => $cartCount,
+            'totalAmount' => $totalAmount
+        ];
     }
 
     public function shop()
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+
         $products = ProductModel::all();
 
-        // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+        $cartCount = $cartData['cartCount'];
+        $totalAmount = $cartData['totalAmount'];
 
-        return view('Front_end.Contents.shop', compact('products', 'category', 'cartCount'));
+        return view('Front_end.Contents.shop', compact('products', 'category', 'cartCount', 'totalAmount'));
     }
 
     public function shopdetailproducts(Request $request)
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
-        $ProductsDetail = ProductModel::where('product_id', $request->id)->first();
 
-        // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $ProductsDetail = ProductModel::where('product_id', $request->product_id)->first();
+
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+        $cartCount = $cartData['cartCount'];
+        $totalAmount = $cartData['totalAmount'];
 
         $products = ProductModel::all();
 
-        return view('Front_end.Contents.shopdetailproducts', compact('products', 'ProductsDetail', 'category', 'cartCount'));
+        return view('Front_end.Contents.shopdetailproducts', compact('products', 'ProductsDetail', 'category', 'cartCount', 'totalAmount'));
     }
 
     public function shopdetailpet(Request $request)
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
-        $PetsDetail = PetModel::where('pet_id', $request->id)->first();
+        $PetsDetail = PetModel::where('pet_id', $request->pet_id)->first();
 
-        // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+        $cartCount = $cartData['cartCount'];
+        $totalAmount = $cartData['totalAmount'];
 
         $pets = PetModel::all();
 
-        return view('Front_end.Contents.shopdetailpet', compact('pets', 'PetsDetail', 'category', 'cartCount'));
+        return view('Front_end.Contents.shopdetailpet', compact('pets', 'PetsDetail', 'category', 'cartCount', 'totalAmount'));
     }
 
     public function checkout()
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
-        // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+        $cartCount = $cartData['cartCount'];
+        $totalAmount = $cartData['totalAmount'];
 
-        return view('Front_end.Contents.checkout', compact('category', 'cartCount'));
+        return view('Front_end.Contents.checkout', compact('category', 'cartCount', 'totalAmount'));
     }
 
     public function contact()
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
-        // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+        $cartCount = $cartData['cartCount'];
+        $totalAmount = $cartData['totalAmount'];
 
-        return view('Front_end.Contents.contact', compact('category', 'cartCount'));
+        return view('Front_end.Contents.contact', compact('category', 'cartCount', 'totalAmount'));
     }
 }

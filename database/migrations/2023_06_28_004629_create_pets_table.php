@@ -22,10 +22,13 @@ return new class extends Migration
             $table->integer('quantity')->notNullable();
             $table->string('image')->nullable();
             $table->string('status')->default('Stocking');
+            $table->integer('sales')->default(0);
+            $table->timestamp('sold_at')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('category_id')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('deleted_at')->nullable()->useCurrentOnUpdate();
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('category_id')->references('category_id')->on('categories');
         });

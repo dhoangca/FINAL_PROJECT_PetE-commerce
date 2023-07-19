@@ -14,53 +14,13 @@ class CartController extends Controller
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
-        // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+        $cartCount = $cartData['cartCount'];
+        $totalAmount = $cartData['totalAmount'];
 
-        return view('Front_end.Contents.cart', compact('category', 'cartCount'));
+        return view('Front_end.Contents.cart', compact('category', 'cartCount', 'totalAmount'));
     }
 
-    // public function addToCart($item_id, $item_type)
-    // {
-    //     $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
-
-    //     $item = null;
-    //     $prefixed_id = '';
-
-    //     if ($item_type === 'pet') {
-    //         $item = PetModel::find($item_id);
-    //         $prefixed_id = 'pet_' . $item_id;
-    //     } elseif ($item_type === 'product') {
-    //         $item = ProductModel::find($item_id);
-    //         $prefixed_id = 'product_' . $item_id;
-    //     }
-
-    //     if (!$item) {
-    //         abort(404);
-    //     }
-
-    //     $cart = session()->get('cart') ?? [];
-
-    //     if (isset($cart[$prefixed_id])) {
-    //         // If the item already exists in the cart, increment the quantity
-    //         $cart[$prefixed_id]['quantity']++;
-    //         session()->put('cart', $cart);
-    //         return view('Front_end.Contents.cart', compact('category'))->with('msg', 'Item quantity updated successfully!');
-    //     }
-
-    //     // If the item does not exist in the cart, add it with quantity = 1
-    //     $cart[$prefixed_id] = [
-    //         'name' => $item->name,
-    //         'quantity' => 1,
-    //         'price' => $item->price,
-    //         'image' => $item->image,
-    //         'item_type' => $item_type // Add item_type to distinguish between pet and product
-    //     ];
-
-    //     session()->put('cart', $cart);
-
-    //     return view('Front_end.Contents.cart', compact('category'))->with('msg', 'Item added to cart successfully!');
-    // }
     public function addToCart($item_id, $item_type)
     {
         $item = null;
@@ -84,7 +44,7 @@ class CartController extends Controller
             // If the item already exists in the cart, increment the quantity
             $cart[$prefixed_id]['quantity']++;
             session()->put('cart', $cart);
-            return redirect()->route('cart')->with('msg', 'Item quantity updated successfully!');
+            return redirect()->route('Clients.cart')->with('msg', 'Item quantity updated successfully!');
         }
 
         // If the item does not exist in the cart, add it with quantity = 1
@@ -98,23 +58,24 @@ class CartController extends Controller
 
         session()->put('cart', $cart);
 
-        return redirect()->route('cart')->with('msg', 'Item added to cart successfully!');
+        return redirect()->route('Clients.cart')->with('msg', 'Item added to cart successfully!');
     }
 
     public function getCartCount()
     {
+        $cart = session()->get('cart') ?? [];
         $cartCount = 0;
+        $totalAmount = 0;
 
-        // Retrieve the cart items from the session
-        $cartItems = session()->get('cart', []);
-
-        // Calculate the cart count based on the number of items in the cart
-        foreach ($cartItems as $item) {
+        foreach ($cart as $item) {
             $cartCount += $item['quantity'];
+            $totalAmount += $item['quantity'] * $item['price'];
         }
 
-        // Return the cart count as JSON response
-        return response()->json(['cartCount' => $cartCount]);
+        return [
+            'cartCount' => $cartCount,
+            'totalAmount' => $totalAmount
+        ];
     }
     public function delete(Request $request)
     {

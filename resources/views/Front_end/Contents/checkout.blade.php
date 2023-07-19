@@ -33,29 +33,29 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <input class="form-control" type="text" placeholder="Your First Name">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
+                            <input class="form-control" type="text" placeholder="Your Last Name">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" placeholder="Your Email">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" placeholder="Your Phone Number">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" placeholder="Your Adress">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" placeholder="Can be left blank">
                         </div>
-                        <div class="col-md-6 form-group">
+                        {{-- <div class="col-md-6 form-group">
                             <label>Country</label>
                             <select class="custom-select">
                                 <option selected>United States</option>
@@ -75,13 +75,13 @@
                         <div class="col-md-6 form-group">
                             <label>ZIP Code</label>
                             <input class="form-control" type="text" placeholder="123">
-                        </div>
-                        <div class="col-md-12 form-group">
+                        </div> --}}
+                        {{-- <div class="col-md-12 form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="newaccount">
                                 <label class="custom-control-label" for="newaccount">Create an account</label>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-12">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="shipto">
@@ -96,29 +96,29 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="John">
+                                <input class="form-control" type="text" placeholder="Your First Name">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="Doe">
+                                <input class="form-control" type="text" placeholder="Your Last Name">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="example@email.com">
+                                <input class="form-control" type="text" placeholder="Your Email">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="+123 456 789">
+                                <input class="form-control" type="text" placeholder="Your Phone Number">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address Line 1</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
+                                <input class="form-control" type="text" placeholder="Your Adress">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address Line 2</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
+                                <input class="form-control" type="text" placeholder="Can be left blank">
                             </div>
-                            <div class="col-md-6 form-group">
+                            {{-- <div class="col-md-6 form-group">
                                 <label>Country</label>
                                 <select class="custom-select">
                                     <option selected>United States</option>
@@ -138,7 +138,7 @@
                             <div class="col-md-6 form-group">
                                 <label>ZIP Code</label>
                                 <input class="form-control" type="text" placeholder="123">
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -60,6 +60,7 @@
                                             <th>Gender</th>
                                             <th>Price</th>
                                             <th>Status</th>
+                                            <th>Selling</th>
                                             <th>Description</th>
                                             <th>Quantity</th>
                                             <th>Creation date</th>
@@ -77,6 +78,7 @@
                                             <th>Gender</th>
                                             <th>Price</th>
                                             <th>Status</th>
+                                            <th>Selling</th>
                                             <th>Description</th>
                                             <th>Quantity</th>
                                             <th>Creation date</th>
@@ -99,6 +101,7 @@
                                                 <td>{{ $value->gender }}</td>
                                                 <td>{{ $value->price }}</td>
                                                 <td>{{ $value->status }}</td>
+                                                <td>{{ $value->sales }}</td>
                                                 <td>{{ $value->description }}</td>
                                                 <td>{{ $value->quantity }}</td>
                                                 <td>{{ $value->created_at }}</td>
