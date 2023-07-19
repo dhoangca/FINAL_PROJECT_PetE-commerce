@@ -31,7 +31,7 @@
             <table class="table table-light table-borderless table-hover text-center mb-0">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Choose</th>
+                        {{-- <th>Choose</th> --}}
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
@@ -43,13 +43,13 @@
                 <tbody class="align-middle">
                     @if (session('cart') && count(session('cart')) > 0)
                         @foreach (session('cart') as $item_id => $details)
-                            <tr>
-                                <td class="align-middle" style="text-align: center; margin">
+                            <tr data-item-id="{{ $item_id }}" data-item-price="{{ $details['price'] }}">
+                                {{-- <td class="align-middle" style="text-align: center; margin">
                                     <div class="form-check" style="margin-bottom: 11px; margin-left: 6px;">
-                                        <input class="form-check-input" type="checkbox" id="checkboxId"
-                                            name="checkboxName" value="" style="transform: scale(2);">
+                                        <input class="form-check-input" type="checkbox" id="checkboxId" name="checkboxName"
+                                            value="" style="transform: scale(2);">
                                     </div>
-                                </td>
+                                </td> --}}
                                 <td class="align-middle">
                                     @if (isset($details['image']))
                                         <img src="{{ asset('Admin/img/' . $details['image']) }}" alt="Pet Image"
@@ -59,35 +59,32 @@
                                     @endif
                                 </td>
                                 <td class="align-middle">{{ $details['name'] }}</td>
-                                <td class="align-middle">${{ $details['price'] }}</td>
+                                <td class="align-middle" data-field="price">${{ $details['price'] }}</td>
                                 <td class="align-middle" style="text-align: center; max-width: 130px;">
                                     <div class="input-group quantity">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-primary btn-minus" type="button"
-                                                data-item-id="{{ $item_id }}">
+                                        {{-- <div class="input-group-prepend">
+                                            <button class="btn btn-primary btn-minus" type="button">
                                                 <i class="fa fa-minus"></i>
                                             </button>
-                                        </div>
-                                        <input type="number"
+                                        </div> --}}
+                                        <input type="number" style="width: 5px;"
                                             class="form-control form-control-sm bg-secondary border-0 text-center quantity-input"
-                                            id="quantity-{{ $item_id }}" value="{{ $details['quantity'] }}"
-                                            readonly>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary btn-plus" type="button"
-                                                data-item-id="{{ $item_id }}">
+                                            data-item-id="{{ $item_id }}" value="{{ $details['quantity'] }}">
+                                        {{-- <div class="input-group-append">
+                                            <button class="btn btn-primary btn-plus" type="button">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </td>
-                                <td class="align-middle" class="total-price" id="total-price-{{ $item_id }}">$<span
-                                        id="price-{{ $item_id }}">{{ $details['price'] * $details['quantity'] }}</span>
+                
+                                {{-- Calculate total amount --}}
+                                <td class="align-middle" id="total-{{ $item_id }}">
+                                    ${{ $details['price'] * $details['quantity'] }}
                                 </td>
-
-
+                
                                 <td class="align-middle">
-                                    <form action="{{ route('Clients.deletecart', ['item_id' => $item_id]) }}"
-                                        method="POST">
+                                    <form action="{{ route('Clients.deletecart', ['item_id' => $item_id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
@@ -98,33 +95,10 @@
                             </tr>
                         @endforeach
                     @else
-                        <p>Your cart is empty.</p>
+                        <tr>
+                            <td colspan="7">Your cart is empty.</td>
+                        </tr>
                     @endif
-                    {{-- <tr>
-                        <td class="align-middle"><img src="Front_end/img/product-2.jpg" alt=""
-                                style="width: 50px;"> Product Name</td>
-                        <td class="align-middle">$150</td>
-                        <td class="align-middle">
-                            <div class="input-group quantity mx-auto" style="width: 100px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-minus">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                                <input type="text"
-                                    class="form-control form-control-sm bg-secondary border-0 text-center"
-                                    value="1">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-plus">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">$150</td>
-                        <td class="align-middle"><button class="btn btn-sm btn-danger"><i
-                                    class="fa fa-times"></i></button></td>
-                    </tr> --}}
                 </tbody>
             </table>
         </div>
@@ -143,20 +117,23 @@
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>$150</h6>
+                        <div class="total-amount" id="">
+                            <h6>${{ number_format($totalAmount, 2) }}</h6>
+                        </div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">$10</h6>
+                        <h6 class="font-weight-medium">Free</h6>
                     </div>
                 </div>
                 <div class="pt-2">
-                    <div class="d-flex justify-content-between mt-2">
+                    <div class="d-flex justify-content-between mt-2" class="total-amount"> 
                         <h5>Total</h5>
-                        <h5>$160</h5>
+                        <h5>${{ number_format($totalAmount, 2) }}</h5>
                     </div>
                     <a href="{{ asset('Clients/Contents/checkout') }}" id="" style="text-decoration: none">
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To
+                            Checkout</button>
                     </a>
                 </div>
             </div>

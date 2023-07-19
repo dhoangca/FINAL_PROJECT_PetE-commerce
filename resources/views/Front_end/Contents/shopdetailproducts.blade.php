@@ -136,12 +136,9 @@
                             </button>
                         </div>
                     </div>
-                    <a
-                        href="{{ route('Clients.addToCart', ['item_id' => $ProductsDetail->product_id, 'item_type' => 'product']) }}">
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart
-                        </button>
-                    </a>
+                    <button class="btn btn-primary px-3" id="add-to-cart-button-product" data-product-id="{{ $ProductsDetail->product_id }}">
+                        <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+                    </button>
                     <span style="margin-left: 10px;"></span>
                     <button class="btn btn-primary px-3"><i class="fa fa-money-bill mr-1"></i> Buy Now
                     </button>
@@ -296,8 +293,8 @@
                                     style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                             </div>
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-shopping-cart"></i></a>
+                                {{-- <a class="btn btn-outline-dark btn-square" href=""><i
+                                        class="fa fa-shopping-cart"></i></a> --}}
                                 <a class="btn btn-outline-dark btn-square" href=""><i
                                         class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i

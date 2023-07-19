@@ -53,11 +53,13 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::get('shop/', [ClientsController::class, 'shop'])->name('shop');
 
-        Route::get('shopdetailproducts/{id}', [ClientsController::class, 'shopdetailproducts'])->name('shopdetailproducts');
+        Route::get('shopdetailproducts/{product_id}', [ClientsController::class, 'shopdetailproducts'])->name('shopdetailproducts');
 
-        Route::get('shopdetailpet/{id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');        
+        Route::get('shopdetailpet/{pet_id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');        
 
-        Route::get('checkout/', [ClientsController::class, 'checkout'])->name('checkout')->middleware('auth.user');
+        Route::get('checkout/', [ClientsController::class, 'checkout'])->name('getCheckout')->middleware('auth.user');
+
+        Route::post('checkout/', [ClientsController::class, 'checkout'])->name('postCheckout')->middleware('auth.user');
 
         Route::get('contact/', [ClientsController::class, 'contact'])->name('contact');
 
@@ -71,7 +73,7 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
     {
         Route::get('cart/', [CartController::class, 'cart'])->name('cart');
             
-        // Route::get('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
+        Route::get('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
 
         Route::post('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
 

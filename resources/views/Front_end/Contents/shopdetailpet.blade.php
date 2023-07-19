@@ -143,9 +143,10 @@
                             <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
                         </button>
                     </a> --}}
-                    <button class="btn btn-primary px-3" id="add-to-cart-button" data-pet-id="{{ $PetsDetail->pet_id }}">
+                    <button class="btn btn-primary px-3" id="add-to-cart-button-pet" data-pet-id="{{ $PetsDetail->pet_id }}">
                         <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
                     </button>
+   
                     <span style="margin-left: 10px;"></span>
                     <button class="btn btn-primary px-3"><i class="fa fa-money-bill mr-1"></i>
                         Buy Now
@@ -301,14 +302,14 @@
                                     style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                             </div>
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-shopping-cart"></i></a>
+                                {{-- <a class="btn btn-outline-dark btn-square" href=""><i
+                                        class="fa fa-shopping-cart"></i></a> --}}
                                 <a class="btn btn-outline-dark btn-square" href=""><i
                                         class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i
                                         class="fa fa-sync-alt"></i></a>
                                 <a class="btn btn-outline-dark btn-square"
-                                    href="{{ asset('Clients/Contents/shopdetailpet/' . $PetsDetail->pet_id) }}"><i
+                                    href="{{ asset('Clients/Contents/shopdetailpet/' . $pet->pet_id) }}"><i
                                         class="fa fa-search"></i></a>
                             </div>
                         </div>

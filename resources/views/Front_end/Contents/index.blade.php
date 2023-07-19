@@ -47,13 +47,102 @@
 </div>
 <!-- Categories End -->
 
+<!-- Offer top sale Start -->
+<div class="container-fluid pt-5 pb-3">
+    <div class="row px-xl-5">
+        <div class="col-md-6">
+            <div class="product-offer mb-30" style="height: 300px;">
+                <img class="img-fluid" src="Front_end/img/anh-3.jpg" alt="">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Super cute</h6>
+                    <h3 class="text-white mb-3">Top selling pet bowls of the store</h3>
+                    <a href="" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="product-offer mb-30" style="height: 300px;">
+                <img class="img-fluid" src="Front_end/img/anh-4.jpg" alt="">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Super cute</h6>
+                    <h3 class="text-white mb-3">Top selling pet bowls of the store</h3>
+                    <a href="" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Offer top sale End -->
 
-<!-- Products Start -->
+<!-- Top Pets Start -->
+<div class="container-fluid pt-5 pb-3">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Best Selling Pets</span></h2>
+    <div class="row px-xl-5">
+        <?php
+        // Convert the collection to an array
+        $petsArray = $pets->toArray();
+
+        // Sort the pets array based on the 'sales' property in descending order
+        usort($petsArray, function ($a, $b) {
+            return $b['sales'] - $a['sales'];
+        });
+
+        $bestSellingPetsCount = 0; // Variable to keep track of the best-selling pets displayed
+
+        echo '<div class="d-flex flex-wrap">'; // Opening div for the flex container
+
+        foreach ($petsArray as $key => $value) {
+            // Display only the top 4 best-selling pets
+            if ($bestSellingPetsCount < 4) {
+                ?>
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            <div style="width: 350px; height: 300px; overflow: hidden;">
+                                <img src="{{ asset('Admin/img/' . $value['image']) }}" style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
+                            </div>
+                            <div class="product-action">
+                                {{-- <a class="btn btn-outline-dark btn-square" href="#" id="add-to-cart-button" data-pet-id="{{ $value['pet_id'] }}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a> --}}
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{{ asset('Clients/Contents/shopdetailpet/' . $value['pet_id']) }}"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="">{{ $value['name'] }}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>${{ $value['price'] }}</h5>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small>({{ $value['sales'] }})</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+
+                $bestSellingPetsCount++; // Increment the best-selling pets count
+            }
+        }
+
+        echo '</div>'; // Closing div for the flex container
+        ?>
+    </div>
+</div>
+<!-- Top Pets end -->
+
+<!-- Pets Start -->
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">All
             Pets</span></h2>
     <div class="row px-xl-5">
-
         @foreach ($pets as $key => $value)
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
@@ -64,15 +153,9 @@
                         </div>
                         <div class="product-action">
                             {{-- <a class="btn btn-outline-dark btn-square"
-                                href="#" id="add-to-cart-button" data-pet-id="{{ $PetsDetail->pet_id }}">
+                                href="#" id="add-to-cart-button" data-pet-id="{{ $value->pet_id }}">
                                 <i class="fa fa-shopping-cart"></i>
                             </a> --}}
-                            <a class="btn btn-outline-dark btn-square"
-                                href="{{ route('Clients.addToCart', ['item_id' => $value->pet_id, 'item_type' => 'pet']) }}"
-                                id="add-to-cart-button">
-                                <i class="fa fa-shopping-cart"></i>
-                            </a>
-
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square"
@@ -100,7 +183,7 @@
         @endforeach
     </div>
 </div>
-<!-- Products End -->
+<!-- Pets End -->
 
 
 <!-- Offer Start -->
@@ -146,10 +229,10 @@
                                 style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                         </div>
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square"
+                            {{-- <a class="btn btn-outline-dark btn-square"
                                 href="{{ route('Clients.addToCart', ['item_id' => $value->product_id, 'item_type' => 'product']) }}">
                                 <i class="fa fa-shopping-cart"></i>
-                            </a>
+                            </a> --}}
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square"
