@@ -61,10 +61,10 @@
                                             style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                                     </div>
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square"
+                                        {{-- <a class="btn btn-outline-dark btn-square"
                                             href="{{ route('Clients.addToCart', ['item_id' => $pet->pet_id, 'item_type' => 'pet']) }}">
                                             <i class="fa fa-shopping-cart"></i>
-                                        </a>
+                                        </a> --}}
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="far fa-heart"></i></a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
@@ -93,6 +93,44 @@
                             </div>
                         </div>
                     @endforeach
+                    {{-- Display pagination links for pets --}}
+                    <!-- Display pagination links for pets -->
+                    @if ($petResults->hasPages())
+                        <div class="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+
+                                    {{-- Previous Page Link --}}
+                                    @if ($petResults->onFirstPage())
+                                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item"><a class="page-link"
+                                                href="{{ $petResults->previousPageUrl() }}&query={{ $query }}">Previous</a>
+                                        </li>
+                                    @endif
+
+                                    {{-- Pagination Links --}}
+                                    @for ($i = 1; $i <= $petResults->lastPage(); $i++)
+                                        <li class="page-item {{ $i == $petResults->currentPage() ? 'active' : '' }}">
+                                            <a class="page-link"
+                                                href="{{ $petResults->url($i) }}&query={{ $query }}">{{ $i }}</a>
+                                        </li>
+                                    @endfor
+
+                                    {{-- Next Page Link --}}
+                                    @if ($petResults->hasMorePages())
+                                        <li class="page-item"><a class="page-link"
+                                                href="{{ $petResults->nextPageUrl() }}&query={{ $query }}">Next</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                                    @endif
+
+                                </ul>
+                            </nav>
+                        </div>
+                    @endif
                 @elseif(!$productResults->isEmpty())
                     @foreach ($productResults as $product)
                         <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
@@ -103,10 +141,10 @@
                                             style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                                     </div>
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square"
+                                        {{-- <a class="btn btn-outline-dark btn-square"
                                             href="{{ route('Clients.addToCart', ['item_id' => $product->product_id, 'item_type' => 'product']) }}">
                                             <i class="fa fa-shopping-cart"></i>
-                                        </a>
+                                        </a> --}}
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="far fa-heart"></i></a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
@@ -135,9 +173,50 @@
                             </div>
                         </div>
                     @endforeach
+                    {{-- Display pagination links for products --}}
+                    <!-- Display pagination links for products -->
+                    @if ($productResults->hasPages())
+                        <div class="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+
+                                    {{-- Previous Page Link --}}
+                                    @if ($productResults->onFirstPage())
+                                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item"><a class="page-link"
+                                                href="{{ $productResults->previousPageUrl() }}&query={{ $query }}">Previous</a>
+                                        </li>
+                                    @endif
+
+                                    {{-- Pagination Links --}}
+                                    @for ($i = 1; $i <= $productResults->lastPage(); $i++)
+                                        <li
+                                            class="page-item {{ $i == $productResults->currentPage() ? 'active' : '' }}">
+                                            <a class="page-link"
+                                                href="{{ $productResults->url($i) }}&query={{ $query }}">{{ $i }}</a>
+                                        </li>
+                                    @endfor
+
+                                    {{-- Next Page Link --}}
+                                    @if ($productResults->hasMorePages())
+                                        <li class="page-item"><a class="page-link"
+                                                href="{{ $productResults->nextPageUrl() }}&query={{ $query }}">Next</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item disabled"><a class="page-link" href="#">Next</a>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                            </nav>
+                        </div>
+                    @endif
+
                 @endif
                 {{-- =================================================================================== --}}
-                <div class="col-12">
+                {{-- <div class="col-12">
                     <nav>
                         <ul class="pagination justify-content-center">
                             <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a>
@@ -148,7 +227,7 @@
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- Shop Product End -->

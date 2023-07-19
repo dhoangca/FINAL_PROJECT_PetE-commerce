@@ -60,10 +60,10 @@
                                             style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                                     </div>
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square"
+                                        {{-- <a class="btn btn-outline-dark btn-square"
                                             href="{{ route('Clients.addToCart', ['item_id' => $pet->pet_id, 'item_type' => 'pet']) }}">
                                             <i class="fa fa-shopping-cart"></i>
-                                        </a>
+                                        </a> --}}
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="far fa-heart"></i></a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
@@ -103,10 +103,10 @@
                                             style="object-fit: cover; width: 100%; height: 100%;" alt="Image">
                                     </div>
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square"
+                                        {{-- <a class="btn btn-outline-dark btn-square"
                                             href="{{ route('Clients.addToCart', ['item_id' => $product->product_id, 'item_type' => 'product']) }}">
                                             <i class="fa fa-shopping-cart"></i>
-                                        </a>
+                                        </a> --}}
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="far fa-heart"></i></a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i
@@ -135,12 +135,45 @@
                             </div>
                         </div>
                     @endforeach
+                    {{-- Display the pagination links --}}
+                    <div class="col-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {{-- Previous Page Link --}}
+                                @if ($pets->currentPage() == 1 && $products->currentPage() == 1)
+                                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                @else
+                                    <li class="page-item"><a class="page-link"
+                                            href="{{ $pets->previousPageUrl() }}">Previous</a></li>
+                                @endif
+
+                                {{-- Pagination Links --}}
+                                @for ($page = 1; $page <= max($pets->lastPage(), $products->lastPage()); $page++)
+                                    @if ($page == $pets->currentPage() || $page == $products->currentPage())
+                                        <li class="page-item active"><span class="page-link">{{ $page }}</span>
+                                        </li>
+                                    @else
+                                        <li class="page-item"><a class="page-link"
+                                                href="{{ $pets->url($page) }}">{{ $page }}</a></li>
+                                    @endif
+                                @endfor
+
+                                {{-- Next Page Link --}}
+                                @if ($pets->hasMorePages() || $products->hasMorePages())
+                                    <li class="page-item"><a class="page-link"
+                                            href="{{ $pets->nextPageUrl() }}">Next</a></li>
+                                @else
+                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
                 @endif
                 @if ($pets->count() == 0 && $products->count() == 0)
                     <p>No products or pets found.</p>
                 @endif
                 {{-- =================================================================================== --}}
-                <div class="col-12">
+                {{-- <div class="col-12">
                     <nav>
                         <ul class="pagination justify-content-center">
                             <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a>
@@ -151,7 +184,7 @@
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- Shop Product End -->
