@@ -58,7 +58,7 @@ class ClientsController extends Controller
         $cartData = $this->getCartCount(); // Get both cart count and total amount
         $cartCount = $cartData['cartCount'];
         $totalAmount = $cartData['totalAmount'];
-
+        
         return view('Front_end.Contents.shop', compact('products', 'category', 'cartCount', 'totalAmount'));
     }
 

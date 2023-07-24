@@ -27,7 +27,6 @@
             totalAmountElement.textContent = `$${total}`;
         });
     });
-
 </script>
 
 {{-- add to cart for pets  --}}
@@ -164,17 +163,41 @@
 </script> --}}
 
 {{-- end add to cart --}}
+{{-- lọc theo tiền --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".price-filter").change(function() {
+            filterProductsByPrice();
+        });
 
-{{-- duy tri so luong cart --}}
-{{-- <script>
-    // Retrieve the cart count from local storage
-    var cartCount = localStorage.getItem("cartCount");
+        function filterProductsByPrice() {
+            var selectedPrices = $(".price-filter:checked");
+            var minPrice = Number.MAX_SAFE_INTEGER;
+            var maxPrice = Number.MIN_SAFE_INTEGER;
 
-    // Update the cart count in the UI
-    if (cartCount !== null) {
-        document.getElementById("cart-count").innerText = cartCount;
-    }
-</script> --}}
+            selectedPrices.each(function() {
+                var min = parseFloat($(this).data("min"));
+                var max = parseFloat($(this).data("max"));
+                if (min < minPrice) {
+                    minPrice = min;
+                }
+                if (max > maxPrice) {
+                    maxPrice = max;
+                }
+            });
+
+            $(".product-item").each(function() {
+                var price = parseFloat($(this).data("price"));
+                if (price >= minPrice && price <= maxPrice) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+</script>
 
 {{-- tính tiền theo lựa chọn của khách hàng --}}
 <!-- Add this script after the cart items table -->
@@ -211,5 +234,3 @@
     // Call the updateTotalAmount function initially to display the initial total
     updateTotalAmount();
   </script> --}}
-  
-  

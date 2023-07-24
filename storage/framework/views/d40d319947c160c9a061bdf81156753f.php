@@ -1,0 +1,2 @@
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a><?php /**PATH D:\FINAL_PROJECT_PetE-commerce\resources\views/Front_end/Layouts/back_to_top.blade.php ENDPATH**/ ?>
