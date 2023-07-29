@@ -26,12 +26,14 @@
 
 <!-- Cart Start -->
 <div class="container-fluid">
+
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <table class="table table-light table-borderless table-hover text-center mb-0">
                 <thead class="thead-dark">
                     <tr>
-                        
+                        <th>Choose</th>
+                        <th>id</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
@@ -40,11 +42,25 @@
                         <th>Remove</th>
                     </tr>
                 </thead>
+                
+                <?php if(session('error')): ?>
+                    <div class="alert alert-danger">
+                        <?php echo e(session('error')); ?>
+
+                    </div>
+                <?php endif; ?>
                 <tbody class="align-middle">
+                    
                     <?php if(session('cart') && count(session('cart')) > 0): ?>
                         <?php $__currentLoopData = session('cart'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item_id => $details): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr data-item-id="<?php echo e($item_id); ?>" data-item-price="<?php echo e($details['price']); ?>">
-                                
+                                <td class="align-middle" style="text-align: center; margin">
+                                    <div class="form-check" style="margin-bottom: 11px; margin-left: 6px;">
+                                        <input class="form-check-input select-item" type="checkbox"
+                                            value="<?php echo e($item_id); ?>" style="transform: scale(2);">
+                                    </div>
+                                </td>
+                                <td class="align-middle"><?php echo e($item_id); ?></td>
                                 <td class="align-middle">
                                     <?php if(isset($details['image'])): ?>
                                         <img src="<?php echo e(asset('Admin/img/' . $details['image'])); ?>" alt="Pet Image"
@@ -64,15 +80,16 @@
                                         
                                     </div>
                                 </td>
-                
+
                                 
                                 <td class="align-middle" id="total-<?php echo e($item_id); ?>">
                                     $<?php echo e($details['price'] * $details['quantity']); ?>
 
                                 </td>
-                
+
                                 <td class="align-middle">
-                                    <form action="<?php echo e(route('Clients.deletecart', ['item_id' => $item_id])); ?>" method="POST">
+                                    <form action="<?php echo e(route('Clients.deletecart', ['item_id' => $item_id])); ?>"
+                                        method="POST">
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('DELETE'); ?>
                                         <button type="submit" class="btn btn-danger">
@@ -91,14 +108,7 @@
             </table>
         </div>
         <div class="col-lg-4">
-            <form class="mb-30" action="">
-                <div class="input-group">
-                    <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">Apply Coupon</button>
-                    </div>
-                </div>
-            </form>
+            
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart
                     Summary</span></h5>
             <div class="bg-light p-30 mb-5">
@@ -115,14 +125,14 @@
                     </div>
                 </div>
                 <div class="pt-2">
-                    <div class="d-flex justify-content-between mt-2" class="total-amount"> 
+                    <div class="d-flex justify-content-between mt-2" class="total-amount">
                         <h5>Total</h5>
                         <h5>$<?php echo e(number_format($totalAmount, 2)); ?></h5>
                     </div>
-                    <a href="<?php echo e(asset('Clients/Contents/checkout')); ?>" id="" style="text-decoration: none">
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To
-                            Checkout</button>
-                    </a>
+                    
+                    <button id="checkout-btn" class="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                        Proceed To Checkout
+                    </button>
                 </div>
             </div>
         </div>

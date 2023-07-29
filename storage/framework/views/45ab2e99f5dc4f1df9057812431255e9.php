@@ -1,5 +1,6 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="Front_end/lib/easing/easing.min.js"></script>
 <script src="Front_end/lib/owlcarousel/owl.carousel.min.js"></script>
@@ -10,6 +11,7 @@
 
 <!-- Template Javascript -->
 <script src="Front_end/js/main.js"></script>
+
 
 
 <script>
@@ -119,6 +121,8 @@
 
 
 
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -155,7 +159,98 @@
 </script>
 
 
-<!-- Add this script after the cart items table -->
-<!-- Add this script after the cart items table -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".price-filter").change(function() {
+            filterProductsByPrice();
+        });
+
+        function filterProductsByPrice() {
+            var selectedPrices = $(".price-filter:checked");
+            var minPrice = Number.MAX_SAFE_INTEGER;
+            var maxPrice = Number.MIN_SAFE_INTEGER;
+
+            selectedPrices.each(function() {
+                var min = parseFloat($(this).data("min"));
+                var max = parseFloat($(this).data("max"));
+                if (min < minPrice) {
+                    minPrice = min;
+                }
+                if (max > maxPrice) {
+                    maxPrice = max;
+                }
+            });
+
+            $(".product-item").each(function() {
+                var price = parseFloat($(this).data("price"));
+                if (price >= minPrice && price <= maxPrice) {
+                    $(this).removeClass("d-none"); // Show product
+                } else {
+                    $(this).addClass("d-none"); // Hide product
+                }
+            });
+
+            // Hide pagination if no products are visible
+            var visibleProducts = $(".product-item").not(".d-none");
+            if (visibleProducts.length > 0) {
+                $(".pagination").show();
+            } else {
+                $(".pagination").hide();
+            }
+        }
+    });
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handler for "Proceed to Checkout" button click
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            // Get the selected product IDs
+            const selectedItems = [];
+            document.querySelectorAll('.form-check-input:checked').forEach(function(item) {
+                selectedItems.push(item.value);
+            });
+
+            // If no items are selected, show an error message
+            if (selectedItems.length === 0) {
+                alert("No items selected for checkout.");
+                return;
+            }
+
+            // Create a form element
+            const form = document.createElement('form');
+            form.action = "<?php echo e(route('Clients.getCheckout')); ?>";
+            form.method = "POST";
+
+            // Create a hidden input field with the selected item IDs
+            const inputField = document.createElement('input');
+            inputField.type = 'hidden';
+            inputField.name = 'selected_items';
+            inputField.value = JSON.stringify(selectedItems);
+
+            // Append the input field to the form
+            form.appendChild(inputField);
+
+            // Create a CSRF token input field and append it to the form
+            const csrfTokenField = document.createElement('input');
+            csrfTokenField.type = 'hidden';
+            csrfTokenField.name = '_token';
+            csrfTokenField.value = "<?php echo e(csrf_token()); ?>";
+            form.appendChild(csrfTokenField);
+
+            // Append the form to the document body
+            document.body.appendChild(form);
+
+            // Submit the form
+            form.submit();
+        });
+    });
+</script>
 
 <?php /**PATH D:\GraduationThesis_PetE-commerce_G5\resources\views/Front_end/Layouts/js.blade.php ENDPATH**/ ?>

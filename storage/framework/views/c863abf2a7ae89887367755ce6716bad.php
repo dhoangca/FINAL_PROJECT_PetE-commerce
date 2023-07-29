@@ -75,8 +75,8 @@
                                     <a href="<?php echo e(asset('Clients/Cart/cart')); ?>"
                                         class="dropdown-item <?php echo e(request()->is('Clients/Cart/cart') ? 'active' : 'Shopping Cart'); ?>">Shopping
                                         Cart</a>
-                                    <a href="<?php echo e(asset('Clients/Contents/checkout')); ?>"
-                                        class="dropdown-item <?php echo e(request()->is('Clients/Contents/checkout') ? 'active' : 'Checkout'); ?>">Checkout</a>
+                                    <a href="<?php echo e(asset('Clients/Cart/checkout')); ?>"
+                                        class="dropdown-item <?php echo e(request()->is('Clients/Cart/checkout') ? 'active' : 'Checkout'); ?>">Checkout</a>
                                 </div>
                             </div>
                             <a href="<?php echo e(asset('Clients/Contents/contact')); ?>"

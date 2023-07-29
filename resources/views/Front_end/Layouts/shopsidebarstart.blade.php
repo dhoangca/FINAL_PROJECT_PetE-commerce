@@ -45,7 +45,7 @@
                 <!-- Price End -->
 
                 <!-- Color Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter
+                {{-- <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter
                         by color</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <form>
@@ -85,11 +85,11 @@
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <!-- Color End -->
 
                 <!-- Size Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter
+                {{-- <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter
                         by size</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <form>
@@ -129,7 +129,7 @@
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <!-- Size End -->
             </div>
             <!-- Shop Sidebar End -->

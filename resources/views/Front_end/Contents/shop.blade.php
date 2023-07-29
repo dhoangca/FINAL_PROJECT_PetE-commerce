@@ -108,38 +108,45 @@
                 @endforeach
                 {{-- =================================================================================== --}}
                 {{-- Display pagination links --}}
-                <div class="col-12">
-                    <nav>
-                        <ul class="pagination justify-content-center">
-                            {{-- Previous Page Link --}}
-                            @if ($products->onFirstPage())
-                                <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                            @else
-                                <li class="page-item"><a class="page-link"
-                                        href="{{ $products->previousPageUrl() }}">Previous</a></li>
-                            @endif
-
-                            {{-- Pagination Links --}}
-                            @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
-                                @if ($page == $products->currentPage())
-                                    <li class="page-item active"><span class="page-link">{{ $page }}</span>
-                                    </li>
+                @if ($products->count() > 0)
+                    <div class="col-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {{-- Previous Page Link --}}
+                                @if ($products->onFirstPage())
+                                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
                                 @else
                                     <li class="page-item"><a class="page-link"
-                                            href="{{ $url }}">{{ $page }}</a></li>
+                                            href="{{ $products->previousPageUrl() }}">Previous</a>
+                                    </li>
                                 @endif
-                            @endforeach
 
-                            {{-- Next Page Link --}}
-                            @if ($products->hasMorePages())
-                                <li class="page-item"><a class="page-link"
-                                        href="{{ $products->nextPageUrl() }}">Next</a></li>
-                            @else
-                                <li class="page-item disabled"><span class="page-link">Next</span></li>
-                            @endif
-                        </ul>
-                    </nav>
-                </div>
+                                {{-- Pagination Links --}}
+                                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                                    @if ($page == $products->currentPage())
+                                        <li class="page-item active"><span class="page-link">{{ $page }}</span>
+                                        </li>
+                                    @else
+                                        <li class="page-item"><a class="page-link"
+                                                href="{{ $url }}">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+
+                                {{-- Next Page Link --}}
+                                @if ($products->hasMorePages())
+                                    <li class="page-item"><a class="page-link"
+                                            href="{{ $products->nextPageUrl() }}">Next</a></li>
+                                @else
+                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
+                @else
+                    <div class="col-12 text-center mt-4">
+                        <p>No products found.</p>
+                    </div>
+                @endif
 
             </div>
         </div>

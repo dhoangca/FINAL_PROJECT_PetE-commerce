@@ -105,38 +105,45 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 
                 
-                <div class="col-12">
-                    <nav>
-                        <ul class="pagination justify-content-center">
-                            
-                            <?php if($products->onFirstPage()): ?>
-                                <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                            <?php else: ?>
-                                <li class="page-item"><a class="page-link"
-                                        href="<?php echo e($products->previousPageUrl()); ?>">Previous</a></li>
-                            <?php endif; ?>
-
-                            
-                            <?php $__currentLoopData = $products->getUrlRange(1, $products->lastPage()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page => $url): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if($page == $products->currentPage()): ?>
-                                    <li class="page-item active"><span class="page-link"><?php echo e($page); ?></span>
-                                    </li>
+                <?php if($products->count() > 0): ?>
+                    <div class="col-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                
+                                <?php if($products->onFirstPage()): ?>
+                                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
                                 <?php else: ?>
                                     <li class="page-item"><a class="page-link"
-                                            href="<?php echo e($url); ?>"><?php echo e($page); ?></a></li>
+                                            href="<?php echo e($products->previousPageUrl()); ?>">Previous</a>
+                                    </li>
                                 <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                            
-                            <?php if($products->hasMorePages()): ?>
-                                <li class="page-item"><a class="page-link"
-                                        href="<?php echo e($products->nextPageUrl()); ?>">Next</a></li>
-                            <?php else: ?>
-                                <li class="page-item disabled"><span class="page-link">Next</span></li>
-                            <?php endif; ?>
-                        </ul>
-                    </nav>
-                </div>
+                                
+                                <?php $__currentLoopData = $products->getUrlRange(1, $products->lastPage()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page => $url): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($page == $products->currentPage()): ?>
+                                        <li class="page-item active"><span class="page-link"><?php echo e($page); ?></span>
+                                        </li>
+                                    <?php else: ?>
+                                        <li class="page-item"><a class="page-link"
+                                                href="<?php echo e($url); ?>"><?php echo e($page); ?></a></li>
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                
+                                <?php if($products->hasMorePages()): ?>
+                                    <li class="page-item"><a class="page-link"
+                                            href="<?php echo e($products->nextPageUrl()); ?>">Next</a></li>
+                                <?php else: ?>
+                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                <?php endif; ?>
+                            </ul>
+                        </nav>
+                    </div>
+                <?php else: ?>
+                    <div class="col-12 text-center mt-4">
+                        <p>No products found.</p>
+                    </div>
+                <?php endif; ?>
 
             </div>
         </div>

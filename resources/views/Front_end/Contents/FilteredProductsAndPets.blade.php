@@ -53,7 +53,7 @@
 
                     @foreach ($pets as $pet)
                         <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
+                            <div class="product-item bg-light mb-4" data-price="{{ $pet->price }}">
                                 <div class="product-img position-relative overflow-hidden">
                                     <div style="width: 350px; height: 300px; overflow: hidden;">
                                         <img src="{{ asset('Admin/img/' . $pet->image) }}"
@@ -96,7 +96,7 @@
                     {{-- hiển thị product --}}
                     @foreach ($products as $product)
                         <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
+                            <div class="product-item bg-light mb-4" data-price="{{ $product->price }}">
                                 <div class="product-img position-relative overflow-hidden">
                                     <div style="width: 350px; height: 300px; overflow: hidden;">
                                         <img src="{{ asset('Admin/img/' . $product->image) }}"

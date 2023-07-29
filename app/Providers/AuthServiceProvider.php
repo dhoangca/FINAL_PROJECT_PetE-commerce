@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -19,8 +19,16 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any authentication / authorization services.
      */
-    public function boot(): void
+    //
+
+    // Xác định cổng cho trang quản lý người dùng chỉ cho phép truy cập vào vai trò 'quản trị viên'.
+    public function boot()
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define('access-users', function ($user) {
+            return $user->role === 'admin';
+        });
     }
+
 }
