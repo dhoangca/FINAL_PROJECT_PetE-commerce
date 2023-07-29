@@ -38,6 +38,7 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
     // group route của function login, register and logout
     Route::group(['prefix' => 'AuthU'], function () {
+
         Route::get('register/', [RegisterUController::class, 'getRegisterU'])->name('Register');
 
         Route::post('register/', [RegisterUController::class, 'postRegisterU'])->name('postRegisterU');
@@ -56,26 +57,22 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::get('shopdetailproducts/{product_id}', [ClientsController::class, 'shopdetailproducts'])->name('shopdetailproducts');
 
-        Route::get('shopdetailpet/{pet_id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');        
-
-        Route::get('checkout/', [ClientsController::class, 'checkout'])->name('getCheckout')->middleware('auth.user');
-
-        Route::post('checkout/', [ClientsController::class, 'checkout'])->name('postCheckout')->middleware('auth.user');
+        Route::get('shopdetailpet/{pet_id}', [ClientsController::class, 'shopdetailpet'])->name('shopdetailpet');
 
         Route::get('contact/', [ClientsController::class, 'contact'])->name('contact');
 
-        Route::get('search/',[SearchController::class,'search'])->name('search');
+        Route::get('search/', [SearchController::class, 'search'])->name('search');
 
-        Route::get('filtered-products-and-pets/{category_id}',[CategoriController::class,'filterByCategory'])->name('filtered-products-and-pets');
+        Route::get('filtered-products-and-pets/{category_id}', [CategoriController::class, 'filterByCategory'])->name('filtered-products-and-pets');
 
         // Route::get('products/filter/',[ProductsController::class,'filterByPrice'])->name('filterByPrice');
     });
 
     // route Cart
-    Route::group(['prefix' =>'Cart'], function()
-    {
+    Route::group(['prefix' => 'Cart'], function () {
+
         Route::get('cart/', [CartController::class, 'cart'])->name('cart');
-            
+
         Route::get('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
 
         Route::post('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
@@ -84,8 +81,19 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         // Route::post('/update-cart/{id}',[CartController::class,'updatecart'])->name('updatecart')    ;
 
-        Route::delete('deletecart/{item_id}',[CartController::class,'delete'])->name('deletecart');
-            
+        Route::delete('deletecart/{item_id}', [CartController::class, 'delete'])->name('deletecart');
+
+        // Route::get('checkout', [CartController::class, 'checkoutForm'])->name('getCheckout')->middleware('auth.user');
+
+        Route::post('checkout', [CartController::class, 'checkoutForm'])->name('getCheckout')->middleware('auth.user');
+    });
+
+    // Order Routes
+    Route::group(['prefix' => 'Order'], function () {
+
+        Route::post('checkout', [CartController::class, 'placeOrder'])->name('postCheckout')->middleware('auth.user');
+
+        Route::get('checkout/success/{order}', [CartController::class, 'orderSuccess'])->name('checkout.success');
     });
 });
 // end route font-end
@@ -97,7 +105,7 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
     Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
 
-    Route::get('index/', [AdminController::class, 'index'])->name('index');
+    Route::get('index/', [AdminController::class, 'index'])->name('index')->middleware('role:admin,staff');
 
     // group route của function login, register and logout
     Route::group(['prefix' => 'AuthA'], function () {
@@ -114,16 +122,16 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
     // group route của users
     Route::group(['prefix' => 'users'], function () {
-        
-        Route::get('listuser/', [UserController::class, 'listuser'])->name('listuser');
-        
-        Route::get('manageusers/', [UserController::class, 'manageusers'])->name('manageusers');
+
+        Route::get('listuser/', [UserController::class, 'listuser'])->name('listuser')->middleware('role:admin', 'can:access-users');
+
+        Route::get('manageusers/', [UserController::class, 'manageusers'])->name('manageusers')->middleware('role:admin', 'can:access-users');
 
         // Route for blocking a user
-        Route::get('users/{user_id}/block', [UserController::class, 'blockUser'])->name('users.block');
+        Route::get('users/{user_id}/block', [UserController::class, 'blockUser'])->name('users.block')->middleware('role:admin', 'can:access-users');
 
         // Route for unblocking a user
-        Route::get('users/{user_id}/unblock', [UserController::class, 'unblockUser'])->name('users.unblock');
+        Route::get('users/{user_id}/unblock', [UserController::class, 'unblockUser'])->name('users.unblock')->middleware('role:admin', 'can:access-users');
 
         // Route::get('create/', [UserController::class, 'getCreate'])->name('create');
 
@@ -133,61 +141,61 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
         // Route::post('edit/{id}', [UserController::class, 'postEditCate']);
 
-        Route::get('delete/{id}', [UserController::class, 'delete']);
+        Route::get('delete/{id}', [UserController::class, 'delete'])->middleware('role:admin', 'can:access-users');
     });
 
     // group route của pet
     Route::group(['prefix' => 'Pets'], function () {
 
-        Route::get('listpets/', [ManagePetController::class, 'listpets'])->name('listpets');
+        Route::get('listpets/', [ManagePetController::class, 'listpets'])->name('listpets')->middleware('role:admin,staff');
 
-        Route::get('managepets/', [ManagePetController::class, 'managepets'])->name('managepets');
+        Route::get('managepets/', [ManagePetController::class, 'managepets'])->name('managepets')->middleware('role:admin,staff');
 
-        Route::get('create/', [ManagePetController::class, 'getCreatePets'])->name('create');
+        Route::get('create/', [ManagePetController::class, 'getCreatePets'])->name('create')->middleware('role:admin,staff');
 
-        Route::post('create/', [ManagePetController::class, 'postCreatePets']);
+        Route::post('create/', [ManagePetController::class, 'postCreatePets'])->middleware('role:admin,staff');
 
-        Route::get('edit/{id}', [ManagePetController::class, 'getEditPets']);
+        Route::get('edit/{id}', [ManagePetController::class, 'getEditPets'])->middleware('role:admin,staff');
 
-        Route::post('edit/{id}', [ManagePetController::class, 'postEditPets']);
+        Route::post('edit/{id}', [ManagePetController::class, 'postEditPets'])->middleware('role:admin,staff');
 
-        Route::get('delete/{id}', [ManagePetController::class, 'delete']);
+        Route::get('delete/{id}', [ManagePetController::class, 'delete'])->middleware('role:admin,staff');
     });
 
     // group route of products
     Route::group(['prefix' => 'Products'], function () {
 
-        Route::get('listproducts/', [ManageProductsController::class, 'listproducts'])->name('listproducts');
+        Route::get('listproducts/', [ManageProductsController::class, 'listproducts'])->name('listproducts')->middleware('role:admin,staff');
 
-        Route::get('manageproducts/', [ManageProductsController::class, 'manageproducts'])->name('manageproducts');
+        Route::get('manageproducts/', [ManageProductsController::class, 'manageproducts'])->name('manageproducts')->middleware('role:admin,staff');
 
-        Route::get('create/', [ManageProductsController::class, 'getCreateProducts'])->name('create');
+        Route::get('create/', [ManageProductsController::class, 'getCreateProducts'])->name('create')->middleware('role:admin,staff');
 
-        Route::post('create/', [ManageProductsController::class, 'postCreateProducts']);
+        Route::post('create/', [ManageProductsController::class, 'postCreateProducts'])->middleware('role:admin,staff');
 
-        Route::get('edit/{id}', [ManageProductsController::class, 'getEditProducts']);
+        Route::get('edit/{id}', [ManageProductsController::class, 'getEditProducts'])->middleware('role:admin,staff');
 
-        Route::post('edit/{id}', [ManageProductsController::class, 'postEditProducts']);
+        Route::post('edit/{id}', [ManageProductsController::class, 'postEditProducts'])->middleware('role:admin,staff');
 
-        Route::get('delete/{id}', [ManageProductsController::class, 'delete']);
+        Route::get('delete/{id}', [ManageProductsController::class, 'delete'])->middleware('role:admin,staff');
     });
 
     // group route of categori
     Route::group(['prefix' => 'Categoris'], function () {
 
-        Route::get('listcategoris/', [ManageCategoriController::class, 'listcategoris'])->name('listcategoris');
+        Route::get('listcategoris/', [ManageCategoriController::class, 'listcategoris'])->name('listcategoris')->middleware('role:admin,staff');
 
-        Route::get('managecategoris/', [ManageCategoriController::class, 'managecategoris'])->name('managecategoris');
+        Route::get('managecategoris/', [ManageCategoriController::class, 'managecategoris'])->name('managecategoris')->middleware('role:admin,staff');
 
-        Route::get('create/', [ManageCategoriController::class, 'getCreateCategori'])->name('create');
+        Route::get('create/', [ManageCategoriController::class, 'getCreateCategori'])->name('create')->middleware('role:admin,staff');
 
-        Route::post('create/', [ManageCategoriController::class, 'postCreateCategori']);
+        Route::post('create/', [ManageCategoriController::class, 'postCreateCategori'])->middleware('role:admin,staff');
 
-        Route::get('edit/{id}', [ManageCategoriController::class, 'getEditCategori']);
+        Route::get('edit/{id}', [ManageCategoriController::class, 'getEditCategori'])->middleware('role:admin,staff');
 
-        Route::post('edit/{id}', [ManageCategoriController::class, 'postEditCategori']);
+        Route::post('edit/{id}', [ManageCategoriController::class, 'postEditCategori'])->middleware('role:admin,staff');
 
-        Route::get('delete/{id}', [ManageCategoriController::class, 'delete']);
+        Route::get('delete/{id}', [ManageCategoriController::class, 'delete'])->middleware('role:admin,staff');
     });
 
     // group route of order

@@ -54,11 +54,11 @@ class ClientsController extends Controller
         $productsPerPage = 12; // You can adjust this as per your requirement
         $products = ProductModel::paginate($productsPerPage);
         //end phân trang
-        
+
         $cartData = $this->getCartCount(); // Get both cart count and total amount
         $cartCount = $cartData['cartCount'];
         $totalAmount = $cartData['totalAmount'];
-        
+
         return view('Front_end.Contents.shop', compact('products', 'category', 'cartCount', 'totalAmount'));
     }
 
@@ -92,16 +92,17 @@ class ClientsController extends Controller
         return view('Front_end.Contents.shopdetailpet', compact('pets', 'PetsDetail', 'category', 'cartCount', 'totalAmount'));
     }
 
-    public function checkout()
-    {
-        $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
+    // public function checkout()
+    // {
+    //     $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
-        $cartData = $this->getCartCount(); // Get both cart count and total amount
-        $cartCount = $cartData['cartCount'];
-        $totalAmount = $cartData['totalAmount'];
+    //     $cartData = $this->getCartCount(); // Get both cart count and total amount
+    //     $cartCount = $cartData['cartCount'];
+    //     $totalAmount = $cartData['totalAmount'];
 
-        return view('Front_end.Contents.checkout', compact('category', 'cartCount', 'totalAmount'));
-    }
+    //     return view('Front_end.Contents.checkout', compact('category', 'cartCount', 'totalAmount'));
+    // }
+    
 
     public function contact()
     {

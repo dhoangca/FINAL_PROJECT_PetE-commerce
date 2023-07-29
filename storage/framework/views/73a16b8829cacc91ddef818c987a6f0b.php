@@ -53,7 +53,7 @@
 
                     <?php $__currentLoopData = $pets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
+                            <div class="product-item bg-light mb-4" data-price="<?php echo e($pet->price); ?>">
                                 <div class="product-img position-relative overflow-hidden">
                                     <div style="width: 350px; height: 300px; overflow: hidden;">
                                         <img src="<?php echo e(asset('Admin/img/' . $pet->image)); ?>"
@@ -93,7 +93,7 @@
                     
                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
+                            <div class="product-item bg-light mb-4" data-price="<?php echo e($product->price); ?>">
                                 <div class="product-img position-relative overflow-hidden">
                                     <div style="width: 350px; height: 300px; overflow: hidden;">
                                         <img src="<?php echo e(asset('Admin/img/' . $product->image)); ?>"
