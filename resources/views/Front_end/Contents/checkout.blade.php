@@ -158,37 +158,31 @@
             <div class="bg-light p-30 mb-5">
                 <div class="border-bottom">
                     <h6 class="mb-3">Products</h6>
-                    {{-- @php
-                        dd($category, $cartData, $cartCount, $totalAmount, $selectedCartItems);
-                    @endphp --}}
-
-                    {{-- @foreach ($selectedCartItems as $item)
-                        <div>
-                            <h3>{{ $item['name'] }}</h3>
-                            <p>Quantity: {{ $item['quantity'] }}</p>
-                            <p>Price: {{ $item['price'] }}</p>
-                            <!-- Add more details as needed -->
-                        </div>
-                    @endforeach --}}
-
-                    {{-- @if (session('selectedCartItems') && count(session('selectedCartItems')) > 0)
-                        @foreach (session('selectedCartItems') as $item_id => $details)
-                            <div class="d-flex justify-content-between">
-                                <p>{{ $details['name'] }}</p>
-                                <p>${{ $details['price'] }}</p>
-                            </div>
-                        @endforeach
-                    @else
-                        <p>No items selected for payment.</p>
-                    @endif --}}
-
+                    {{-- call products and pet to checkout --}}
                     @if ($selectedCartItems && count($selectedCartItems) > 0)
-                        @foreach ($selectedCartItems as $item_id => $details)
-                            <div class="d-flex justify-content-between">
-                                <p>{{ $details['name'] }}</p>
-                                <p>${{ $details['price'] }}</p>
-                            </div>
-                        @endforeach
+                        @php
+                            $totalAmount = 0; // Initialize the total amount variable
+                        @endphp
+                        <div class="container" style="text-align: center">
+                            {{-- <div class="row">
+                                <div class="col-md-4"><strong>Name</strong></div>
+                                <div class="col-md-4 text-center"><strong>Quantity</strong></div>
+                                <div class="col-md-4 text-right"><strong>Price</strong></div>
+                            </div> --}}
+                            @foreach ($selectedCartItems as $item_id => $details)
+                                <div class="row">
+                                    <div class="col-md-4">{{ $details['name'] }}</div>
+                                    <div class="col-md-4 text-center">{{ $details['quantity'] }}x</div>
+                                    <div class="col-md-4 text-right">${{ $details['price'] }}</div>
+                                </div>                                
+                                <!-- Calculate the subtotal for each item and add it to the total amount -->
+                                @php
+                                    $subtotal = $details['quantity'] * $details['price'];
+                                    $totalAmount += $subtotal;
+                                @endphp
+                                <hr style="visibility: hidden;">
+                            @endforeach
+                        </div>
                     @else
                         <p>No items selected for payment.</p>
                     @endif
@@ -197,7 +191,7 @@
                 <div class="border-bottom pt-3 pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>$150</h6>
+                        <h6>${{ $totalAmount }}.00</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
@@ -207,7 +201,7 @@
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>$160</h5>
+                        <h5>${{ $totalAmount }}.00</h5>
                     </div>
                 </div>
             </div>

@@ -74,8 +74,8 @@
                                     <a href="{{ asset('Clients/Cart/cart') }}"
                                         class="dropdown-item {{ request()->is('Clients/Cart/cart') ? 'active' : 'Shopping Cart' }}">Shopping
                                         Cart</a>
-                                    <a href="{{ asset('Clients/Cart/checkout') }}"
-                                        class="dropdown-item {{ request()->is('Clients/Cart/checkout') ? 'active' : 'Checkout' }}">Checkout</a>
+                                    {{-- <a href="{{ asset('Clients/Cart/checkout') }}"
+                                        class="dropdown-item {{ request()->is('Clients/Cart/checkout') ? 'active' : 'Checkout' }}">Checkout</a> --}}
                                 </div>
                             </div>
                             <a href="{{ asset('Clients/Contents/contact') }}"
