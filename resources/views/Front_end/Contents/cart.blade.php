@@ -33,7 +33,6 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>Choose</th>
-                        <th>id</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
@@ -59,7 +58,6 @@
                                             value="{{ $item_id }}" style="transform: scale(2);">
                                     </div>
                                 </td>
-                                <td class="align-middle">{{ $item_id }}</td>
                                 <td class="align-middle">
                                     @if (isset($details['image']))
                                         <img src="{{ asset('Admin/img/' . $details['image']) }}" alt="Pet Image"

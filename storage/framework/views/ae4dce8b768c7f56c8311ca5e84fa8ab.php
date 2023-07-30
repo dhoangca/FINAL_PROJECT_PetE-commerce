@@ -33,7 +33,6 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>Choose</th>
-                        <th>id</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
@@ -60,7 +59,6 @@
                                             value="<?php echo e($item_id); ?>" style="transform: scale(2);">
                                     </div>
                                 </td>
-                                <td class="align-middle"><?php echo e($item_id); ?></td>
                                 <td class="align-middle">
                                     <?php if(isset($details['image'])): ?>
                                         <img src="<?php echo e(asset('Admin/img/' . $details['image'])); ?>" alt="Pet Image"

@@ -23,9 +23,32 @@ class CategoriController extends Controller
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
         // Assuming you have logic to calculate the cart count
-        $cartCount = 0; // Replace this with your actual cart count calculation logic
+        $cartData = $this->getCartCount(); // Get both cart count and total amount
+
+        $cartCount = $cartData['cartCount'];
+
+        $totalAmount = $cartData['totalAmount'];
 
         return view('Front_end.Contents.FilteredProductsAndPets', compact('categories', 'products', 'pets', 'category', 'cartCount'));
+    }
+
+    public function getCartCount()
+    {
+        $cart = session()->get('cart') ?? [];
+
+        $cartCount = 0;
+
+        $totalAmount = 0;
+
+        foreach ($cart as $item) {
+            $cartCount += $item['quantity'];
+            $totalAmount += $item['quantity'] * $item['price'];
+        }
+
+        return [
+            'cartCount' => $cartCount,
+            'totalAmount' => $totalAmount
+        ];
     }
 
     // public function filterByType($type)

@@ -114,18 +114,26 @@
                 <div class="border-bottom">
                     <h6 class="mb-3">Products</h6>
                     
-
-                    
-
-                    
-
                     <?php if($selectedCartItems && count($selectedCartItems) > 0): ?>
-                        <?php $__currentLoopData = $selectedCartItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item_id => $details): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="d-flex justify-content-between">
-                                <p><?php echo e($details['name']); ?></p>
-                                <p>$<?php echo e($details['price']); ?></p>
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php
+                            $totalAmount = 0; // Initialize the total amount variable
+                        ?>
+                        <div class="container" style="text-align: center">
+                            
+                            <?php $__currentLoopData = $selectedCartItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item_id => $details): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div class="row">
+                                    <div class="col-md-4"><?php echo e($details['name']); ?></div>
+                                    <div class="col-md-4 text-center"><?php echo e($details['quantity']); ?>x</div>
+                                    <div class="col-md-4 text-right">$<?php echo e($details['price']); ?></div>
+                                </div>                                
+                                <!-- Calculate the subtotal for each item and add it to the total amount -->
+                                <?php
+                                    $subtotal = $details['quantity'] * $details['price'];
+                                    $totalAmount += $subtotal;
+                                ?>
+                                <hr style="visibility: hidden;">
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
                     <?php else: ?>
                         <p>No items selected for payment.</p>
                     <?php endif; ?>
@@ -134,7 +142,7 @@
                 <div class="border-bottom pt-3 pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>$150</h6>
+                        <h6>$<?php echo e($totalAmount); ?>.00</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
@@ -144,7 +152,7 @@
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>$160</h5>
+                        <h5>$<?php echo e($totalAmount); ?>.00</h5>
                     </div>
                 </div>
             </div>

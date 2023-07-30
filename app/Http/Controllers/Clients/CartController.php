@@ -21,45 +21,6 @@ class CartController extends Controller
         return view('Front_end.Contents.cart', compact('category', 'cartCount', 'totalAmount'));
     }
 
-    // public function addToCart($item_id, $item_type)
-    // {
-    //     $item = null;
-    //     $prefixed_id = '';
-
-    //     if ($item_type === 'pet') {
-    //         $item = PetModel::find($item_id);
-    //         $prefixed_id = 'pet_' . $item_id;
-    //     } elseif ($item_type === 'product') {
-    //         $item = ProductModel::find($item_id);
-    //         $prefixed_id = 'product_' . $item_id;
-    //     }
-
-    //     if (!$item) {
-    //         abort(404);
-    //     }
-
-    //     $cart = session()->get('cart') ?? [];
-
-    //     if (isset($cart[$prefixed_id])) {
-    //         // If the item already exists in the cart, increment the quantity
-    //         $cart[$prefixed_id]['quantity']++;
-    //         session()->put('cart', $cart);
-    //         return redirect()->route('Clients.cart')->with('msg', 'Item quantity updated successfully!');
-    //     }
-
-    //     // If the item does not exist in the cart, add it with quantity = 1
-    //     $cart[$prefixed_id] = [
-    //         'name' => $item->name,
-    //         'quantity' => 1,
-    //         'price' => $item->price,
-    //         'image' => $item->image,
-    //         'item_type' => $item_type // Add item_type to distinguish between pet and product
-    //     ];
-
-    //     session()->put('cart', $cart);
-
-    //     return redirect()->route('Clients.cart')->with('msg', 'Item added to cart successfully!');
-    // }
     public function addToCart($item_id, $item_type)
     {
         $item = null;
@@ -115,24 +76,15 @@ class CartController extends Controller
         }
 
         // Filter the cart data to include only the selected items
-        // $selectedCartItems = collect($cartData)->filter(function ($cartItem) use ($selectedItemIds) {
-        //     // Ensure $selectedItemIds is an array before using it in in_array()
-        //     $selectedIds = is_array($selectedItemIds) ? $selectedItemIds : [];
-        //     // Check if the cart item's 'item_id' is in the array of selected item IDs
-        //     return in_array($cartItem['item_id'], $selectedIds);
-        // })->all();
-
         $selectedCartItems = collect($cartData)->filter(function ($cartItem) use ($selectedItemIds) {
-            // Ensure $selectedItemIds is an array before using it in in_array()
-            $selectedIds = is_array($selectedItemIds) ? $selectedItemIds : [];
-            
-            // Debug: Display the cart item ID and selected item IDs for each iteration
-            dd($cartItem['item_id'], $selectedIds);
-        
-            // Check if the cart item's 'item_id' is in the array of selected item IDs
-            return in_array($cartItem['item_id'], $selectedIds);
+            // Determine the type of the item (pet or product) based on the item_type in the cart data
+            $itemType = $cartItem['item_type'];
+            // Extract the item ID from the item_id in the cart data
+            $itemId = $cartItem['item_id'];
+
+            // Check if the item ID is in the array of selected item IDs
+            return in_array($itemType . '_' . $itemId, $selectedItemIds);
         })->all();
-        
 
         // Assuming you have logic to get cart count and total amount in $cartData
         $cartData1 = $this->getCartCount();
@@ -147,18 +99,6 @@ class CartController extends Controller
         // Pass the cart data and other necessary data to the checkout view
         return view('Front_end.Contents.checkout', compact('category', 'cartData', 'cartCount', 'totalAmount', 'selectedCartItems'));
     }
-    // public function checkoutForm(Request $request)
-    // {
-    //     // Retrieve the selected item IDs from the form submission
-    //     $selectedItemIds = json_decode($request->input('selected_items'), true);
-
-    //     // Debugging: Dump the selected item IDs to check if they are correct
-    //     dd($selectedItemIds);
-
-    //     // Rest of your code...
-    // }
-
-
 
     public function getCartCount()
     {

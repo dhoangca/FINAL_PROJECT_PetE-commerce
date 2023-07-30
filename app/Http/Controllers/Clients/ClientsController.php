@@ -23,7 +23,9 @@ class ClientsController extends Controller
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
         $cartData = $this->getCartCount(); // Get both cart count and total amount
+
         $cartCount = $cartData['cartCount'];
+
         $totalAmount = $cartData['totalAmount'];
 
         return view('Front_end.Contents.index', compact('categories', 'pets', 'products', 'category',  'cartCount', 'totalAmount', 'bestSellingPets'));
@@ -32,7 +34,9 @@ class ClientsController extends Controller
     public function getCartCount()
     {
         $cart = session()->get('cart') ?? [];
+
         $cartCount = 0;
+
         $totalAmount = 0;
 
         foreach ($cart as $item) {
@@ -52,11 +56,14 @@ class ClientsController extends Controller
 
         //phân trang
         $productsPerPage = 12; // You can adjust this as per your requirement
+
         $products = ProductModel::paginate($productsPerPage);
         //end phân trang
 
         $cartData = $this->getCartCount(); // Get both cart count and total amount
+
         $cartCount = $cartData['cartCount'];
+
         $totalAmount = $cartData['totalAmount'];
 
         return view('Front_end.Contents.shop', compact('products', 'category', 'cartCount', 'totalAmount'));
@@ -69,7 +76,9 @@ class ClientsController extends Controller
         $ProductsDetail = ProductModel::where('product_id', $request->product_id)->first();
 
         $cartData = $this->getCartCount(); // Get both cart count and total amount
+
         $cartCount = $cartData['cartCount'];
+
         $totalAmount = $cartData['totalAmount'];
 
         $products = ProductModel::all();
@@ -84,7 +93,9 @@ class ClientsController extends Controller
         $PetsDetail = PetModel::where('pet_id', $request->pet_id)->first();
 
         $cartData = $this->getCartCount(); // Get both cart count and total amount
+
         $cartCount = $cartData['cartCount'];
+
         $totalAmount = $cartData['totalAmount'];
 
         $pets = PetModel::all();
@@ -92,24 +103,14 @@ class ClientsController extends Controller
         return view('Front_end.Contents.shopdetailpet', compact('pets', 'PetsDetail', 'category', 'cartCount', 'totalAmount'));
     }
 
-    // public function checkout()
-    // {
-    //     $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
-
-    //     $cartData = $this->getCartCount(); // Get both cart count and total amount
-    //     $cartCount = $cartData['cartCount'];
-    //     $totalAmount = $cartData['totalAmount'];
-
-    //     return view('Front_end.Contents.checkout', compact('category', 'cartCount', 'totalAmount'));
-    // }
-    
-
     public function contact()
     {
         $category = CategoriModel::whereIn('type', ['pet', 'product', 'Accessory'])->get();
 
         $cartData = $this->getCartCount(); // Get both cart count and total amount
+
         $cartCount = $cartData['cartCount'];
+        
         $totalAmount = $cartData['totalAmount'];
 
         return view('Front_end.Contents.contact', compact('category', 'cartCount', 'totalAmount'));
