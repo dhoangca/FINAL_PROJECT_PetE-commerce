@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Clients\CategoriController;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Clients\ProductsController;
+use App\Http\Controllers\Clients\OrderController;
 
 
 /*
@@ -83,17 +84,15 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::delete('deletecart/{item_id}', [CartController::class, 'delete'])->name('deletecart');
 
-        // Route::get('checkout', [CartController::class, 'checkoutForm'])->name('getCheckout')->middleware('auth.user');
-
-        Route::post('checkout', [CartController::class, 'checkoutForm'])->name('getCheckout')->middleware('auth.user');
+        Route::post('checkout', [CartController::class, 'checkoutForm'])->name('postCheckout')->middleware('auth.user');
     });
 
     // Order Routes
     Route::group(['prefix' => 'Order'], function () {
 
-        Route::post('checkout', [CartController::class, 'placeOrder'])->name('postCheckout')->middleware('auth.user');
+        Route::get('/order/success/{order}', [OrderController::class, 'orderSuccess'])->name('orderSuccess')->middleware('auth.user');
 
-        Route::get('checkout/success/{order}', [CartController::class, 'orderSuccess'])->name('checkout.success');
+        Route::post('order/', [OrderController::class, 'placeOrder'])->name('placeOrder')->middleware('auth.user');
     });
 });
 // end route font-end

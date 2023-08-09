@@ -225,7 +225,7 @@
 
             // Create a form element
             const form = document.createElement('form');
-            form.action = "<?php echo e(route('Clients.getCheckout')); ?>";
+            form.action = "<?php echo e(route('Clients.postCheckout')); ?>";
             form.method = "POST";
 
             // Create a hidden input field with the selected item IDs
@@ -253,4 +253,31 @@
     });
 </script>
 
+
+<script>
+    const paymentmethodsOptions = document.querySelectorAll('.paymentmethods-options input');
+
+    paymentmethodsOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const selectedPaymentMethodsId = this.value;
+            // You can perform any necessary actions when a category is selected
+            // For example, you could update a hidden input field with the selected category ID
+            // Then, when submitting the form, the hidden input's value will be sent along with the form data
+            document.querySelector('#selected_payment_method_id').value = selectedPaymentMethodsId;
+        });
+    });
+</script>
+
+
+
+<script>
+    // Display floating message and fade out after a few seconds
+    setTimeout(function () {
+        var floatingMessage = document.getElementById('floating-message');
+        floatingMessage.classList.remove('hidden');
+        setTimeout(function () {
+            floatingMessage.style.display = 'none';
+        }, 3000);
+    }, 1000);
+</script>
 <?php /**PATH D:\GraduationThesis_PetE-commerce_G5\resources\views/Front_end/Layouts/js.blade.php ENDPATH**/ ?>

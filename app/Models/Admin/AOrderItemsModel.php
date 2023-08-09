@@ -11,7 +11,7 @@ class AOrderItemsModel extends Model
 
     protected $table = "order_items"; 
 
-    protected $fillable=['quantity','price','order_id','pet_id','product_id','created_at','updated_at'];
+    protected $fillable=['name','quantity','price','image','item_id','item_type','order_id','pet_id','product_id','created_at','updated_at'];
 
     protected $primaryKey ='order_item_id';
 

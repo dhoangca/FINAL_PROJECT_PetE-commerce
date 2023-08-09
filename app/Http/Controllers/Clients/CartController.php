@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Users\CategoriModel;
 use App\Models\Users\PetModel;
 use App\Models\Users\ProductModel;
+use App\Models\Users\PaymentMethodsModel;
 
 class CartController extends Controller
 {
@@ -62,6 +63,8 @@ class CartController extends Controller
 
     public function checkoutForm(Request $request)
     {
+        $paymentmethods = PaymentMethodsModel::all();
+
         // Retrieve the selected item IDs from the form submission
         $selectedItemIds = json_decode($request->input('selected_items'), true);
 
@@ -97,7 +100,7 @@ class CartController extends Controller
         // dd($category, $cartData, $cartCount, $totalAmount, $selectedCartItems);
 
         // Pass the cart data and other necessary data to the checkout view
-        return view('Front_end.Contents.checkout', compact('category', 'cartData', 'cartCount', 'totalAmount', 'selectedCartItems'));
+        return view('Front_end.Contents.checkout', compact('category', 'cartData', 'cartCount', 'totalAmount', 'selectedCartItems', 'paymentmethods'));
     }
 
     public function getCartCount()
