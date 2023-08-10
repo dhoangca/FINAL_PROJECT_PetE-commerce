@@ -48,6 +48,12 @@
 
                     </div>
                 <?php endif; ?>
+                <?php if(session('success')): ?>
+                    <div class="alert alert-success">
+                        <?php echo e(session('success')); ?>
+
+                    </div>
+                <?php endif; ?>
                 <tbody class="align-middle">
                     
                     <?php if(session('cart') && count(session('cart')) > 0): ?>

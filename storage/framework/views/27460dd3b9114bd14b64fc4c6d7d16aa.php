@@ -1,0 +1,1 @@
+<?php /**PATH D:\GraduationThesis_PetE-commerce_G5\resources\views/Front_end/Contents/confirmation_order.blade.php ENDPATH**/ ?>

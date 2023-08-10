@@ -270,7 +270,7 @@
 
             // Create a form element
             const form = document.createElement('form');
-            form.action = "{{ route('Clients.getCheckout') }}";
+            form.action = "{{ route('Clients.postCheckout') }}";
             form.method = "POST";
 
             // Create a hidden input field with the selected item IDs
@@ -298,3 +298,31 @@
     });
 </script>
 {{-- function checkout end --}}
+{{-- selected payment method id start --}}
+<script>
+    const paymentmethodsOptions = document.querySelectorAll('.paymentmethods-options input');
+
+    paymentmethodsOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const selectedPaymentMethodsId = this.value;
+            // You can perform any necessary actions when a category is selected
+            // For example, you could update a hidden input field with the selected category ID
+            // Then, when submitting the form, the hidden input's value will be sent along with the form data
+            document.querySelector('#selected_payment_method_id').value = selectedPaymentMethodsId;
+        });
+    });
+</script>
+{{-- selected payment method id end --}}
+
+{{-- hiển thị thông báo order thành công --}}
+<script>
+    // Display floating message and fade out after a few seconds
+    setTimeout(function () {
+        var floatingMessage = document.getElementById('floating-message');
+        floatingMessage.classList.remove('hidden');
+        setTimeout(function () {
+            floatingMessage.style.display = 'none';
+        }, 3000);
+    }, 1000);
+</script>
+{{-- end --}}

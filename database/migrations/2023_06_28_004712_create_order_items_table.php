@@ -15,15 +15,15 @@ return new class extends Migration
         Schema::create('order_items', function (Blueprint $table) {
             $table->increments('order_item_id');
             $table->unsignedInteger('order_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('image')->nullable();
             $table->integer('quantity')->notNullable();
             $table->decimal('price', 10, 2)->notNullable();
-            $table->unsignedInteger('pet_id')->nullable();
-            $table->unsignedInteger('product_id')->nullable();
+            $table->integer('item_id')->notNullable();
+            $table->string('item_type')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign('order_id')->references('order_id')->on('orders');
-            $table->foreign('pet_id')->references('pet_id')->on('pets');
-            $table->foreign('product_id')->references('product_id')->on('products');
         });
     }
 

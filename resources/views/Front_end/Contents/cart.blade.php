@@ -47,6 +47,11 @@
                         {{ session('error') }}
                     </div>
                 @endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <tbody class="align-middle">
                     {{-- start --}}
                     @if (session('cart') && count(session('cart')) > 0)

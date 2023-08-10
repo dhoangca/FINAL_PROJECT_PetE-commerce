@@ -9,11 +9,16 @@ class UOrderItemsModel extends Model
 {
     use HasFactory;
 
-    protected $table = "order_items"; 
+    protected $table = "order_items";
 
-    protected $fillable=['quantity','price','order_id','pet_id','product_id','created_at','updated_at'];
+    protected $fillable = ['name','quantity', 'price','image','order_id', 'item_id', 'item_type', 'created_at', 'updated_at'];
 
-    protected $primaryKey ='order_item_id';
+    protected $primaryKey = 'order_item_id';
 
-    public $timestamps=false;
+    public $timestamps = false;
+
+    public function order()
+    {
+        return $this->belongsTo(UOrderModel::class, 'order_id', 'order_id');
+    }
 }
