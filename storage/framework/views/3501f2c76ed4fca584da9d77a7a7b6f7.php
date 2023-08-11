@@ -33,6 +33,11 @@
                                         Profile
                                     </button>
                                 </a>
+                                <a href="<?php echo e(route('Clients.purchaseorder')); ?>" class="text-decoration-none">
+                                    <button class="dropdown-item" type="button">
+                                        Đơn mua
+                                    </button>
+                                </a>
                                 <a href="" class="text-decoration-none">
                                     <button class="dropdown-item" type="button">
                                         Settings

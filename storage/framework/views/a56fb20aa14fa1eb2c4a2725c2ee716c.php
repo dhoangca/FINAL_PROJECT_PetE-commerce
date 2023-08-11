@@ -103,6 +103,23 @@
                 </div>
             </div>
         </li>
+
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrder"
+                aria-expanded="true" aria-controls="collapseOrder">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Order management</span>
+            </a>
+            <div id="collapseOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">All Functions</h6>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Orders/listorders')); ?>">List</a>
+                    <a class="collapse-item" href="<?php echo e(asset('Admins/Orders/manageorders')); ?>">Integrated management
+                    </a>
+                </div>
+            </div>
+        </li>
     
         <!-- Divider -->
         <hr class="sidebar-divider">

@@ -158,7 +158,6 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                              
-                                
                             </div>
                         <?php endif; ?>
                         <input type="hidden" name="selected_cart_items"
