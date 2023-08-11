@@ -153,13 +153,6 @@
                                         </div>
                                     </div>
                                 @endforeach                              
-                                {{-- <div class="form-group mb-4">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" name="payment"
-                                            id="banktransfer">
-                                        <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
-                                    </div>
-                                </div> --}}
                             </div>
                         @endif
                         <input type="hidden" name="selected_cart_items"

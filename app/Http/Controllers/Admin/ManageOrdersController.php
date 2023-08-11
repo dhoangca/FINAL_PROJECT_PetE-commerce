@@ -4,107 +4,65 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Admin\OrderModel;
+use App\Models\Admin\AOrderModel;
+use App\Models\Users\StatusModel;
+
 
 class ManageOrdersController extends Controller
 {
     public function listorders()
     {
-        $orders=OrderModel::all();
+        $orders = AOrderModel::with('status')->get();
 
-        return view ('Admins.Contents.listorders', compact("orders"));
+        return view ('Admins.Contents.listorders', compact('orders', ));
     }
 
     public function manageorders()
     {
-        $orders=OrderModel::all();
+        $orders = AOrderModel::with('status')->get();
 
-        return view ('Admins.Contents.manageorders', compact("orders"));
+        return view ('Admins.Contents.manageorders', compact('orders'));
     }
 
-    // public function getCreateOrders()
-    // {
-    //     $categories = DB::table('categories')->get();
-
-    //     return view('Admins.Contents.createpets', compact("categories"));
-
-    // }
-
-    // //Store function to add data
-
-    // public function postCreateOrders(Request $request)
-    // {
-
-    //     $pets = new OrderModel;
-
-    //     $pets->name = $request->name;
-
-    //     $pets->breed = $request->breed;
-
-    //     $pets->gender = $request->gender;
-
-    //     $pets->price = $request->price;
-
-    //     $pets->description = $request->description;
-
-    //     $pets->quantity = $request->quantity;
-
-    //     $pets->image_url = $request->image_url;
-
-    //     $pets->status = $request->status;
-
-    //     $pets->category_id = $request->category_id;
-
-    //     $pets->save();
-
-    //     return redirect()->route('Admins.managepets');
-
-    // }
-
-    public function getEditOrders($pet_id)
+    public function detailorder($order_id)
     {
-        $categories = DB::table('categories')->get();
+        
+        $orders = AOrderModel::with('user')->findOrFail($order_id);
 
-        $data['cate'] = OrderModel::find($pet_id);
+        $payments = AOrderModel::with('payment')->findOrFail($order_id);
+        
+        $orderitem = AOrderModel::with('orderItems')->findOrFail($order_id);
 
-        return view('Admins.Contents.editpets',$data , compact("categories"));
+        return view('Admins.Contents.detailorder', compact('orderitem', 'orders', 'payments'));
+    }
+
+    public function getEditOrders($order_id)
+    {
+        $statuss = StatusModel::all();
+
+        $data['cate'] = AOrderModel::find($order_id);
+
+        return view('Admins.Contents.editorder',$data , compact('statuss'));
 
     }
 
-    public function postEditOrders(Request $request, $pet_id)
+    public function postEditOrders(Request $request, $order_id)
     {
 
-        $pets = OrderModel::find($pet_id);
+        $orders = AOrderModel::find($order_id);
 
-        $pets->name = $request->name;
+        $orders->status_id = $request->status_id;
 
-        $pets->breed = $request->breed;
+        $orders->save();
 
-        $pets->gender = $request->gender;
-
-        $pets->price = $request->price;
-
-        $pets->description = $request->description;
-
-        $pets->quantity = $request->quantity;
-
-        $pets->image_url = $request->image_url;
-
-        $pets->status = $request->status;
-
-        $pets->category_id = $request->category_id;
-
-        $pets->save();
-
-        return redirect()->route('Admins.managepets');
+        return redirect()->route('Admins.manageorders');
 
     }
 
-    public function delete($pet_id)
+    public function delete($order_id)
     {
 
-        $pets = OrderModel::find($pet_id);
+        $pets = AOrderModel::find($order_id);
 
         $pets->delete();
 

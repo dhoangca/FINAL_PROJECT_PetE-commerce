@@ -19,6 +19,7 @@ use App\Http\Controllers\Clients\CategoriController;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Clients\ProductsController;
 use App\Http\Controllers\Clients\OrderController;
+use App\Http\Controllers\Clients\PurchaseOrderController;
 
 
 /*
@@ -93,6 +94,8 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
         Route::get('/order/success/{order}', [OrderController::class, 'orderSuccess'])->name('orderSuccess')->middleware('auth.user');
 
         Route::post('order/', [OrderController::class, 'placeOrder'])->name('placeOrder')->middleware('auth.user');
+
+        Route::get('/order/information/{status?}', [PurchaseOrderController::class, 'purchaseorder'])->name('purchaseorder')->middleware('auth.user');
     });
 });
 // end route font-end
@@ -198,19 +201,20 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
     });
 
     // group route of order
-    // Route::group(['prefix' => 'Orders'], function () {
+    Route::group(['prefix' => 'Orders'], function () {
 
-    //     Route::get('listorders/', [ManageOrdersController::class, 'listorders'])->name('listorders');
+        Route::get('listorders/', [ManageOrdersController::class, 'listorders'])->name('listorders')->middleware('role:admin,staff');
 
-    //     Route::get('manageorders/', [ManageOrdersController::class, 'manageorders'])->name('manageorders');
+        Route::get('manageorders/', [ManageOrdersController::class, 'manageorders'])->name('manageorders')->middleware('role:admin,staff');
 
-    //     Route::get('edit/{id}', [ManageOrdersController::class, 'getEditOrders']);
+        Route::get('detail/{order_id}', [ManageOrdersController::class, 'detailorder'])->middleware('role:admin,staff');
+        
+        Route::get('edit/{order_id}', [ManageOrdersController::class, 'getEditOrders'])->middleware('role:admin,staff');
 
-    //     Route::post('edit/{id}', [ManageOrdersController::class, 'postEditOrders']);
+        Route::post('edit/{order_id}', [ManageOrdersController::class, 'postEditOrders'])->middleware('role:admin,staff');
 
-    //     Route::get('delete/{id}', [ManageOrdersController::class, 'delete']);
-    // });
-
+        Route::get('delete/{order_id}', [ManageOrdersController::class, 'delete'])->middleware('role:admin,staff');
+    });
 });
 
 
