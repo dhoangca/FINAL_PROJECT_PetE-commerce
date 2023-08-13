@@ -108,9 +108,12 @@
     </div>
 
     <!-- Floating message -->
-    <div id="floating-message" class="floating-message hidden">
-        <h2 id="floating-message-h" class="floating-message-h hidden">Order placed successfully!</h2>
-    </div>
+    <?php if(session('order_success')): ?>
+        <div id="floating-message-order" class="floating-message">
+            <?php echo e(session('order_success')); ?>
+
+        </div>
+    <?php endif; ?>
 </body>
 
 </html>

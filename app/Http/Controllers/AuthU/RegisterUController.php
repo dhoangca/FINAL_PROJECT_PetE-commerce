@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Admin\UsersModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\VerifyEmail;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterUController extends Controller
 {
@@ -41,18 +44,15 @@ class RegisterUController extends Controller
 
     public function postRegisterU(Request $request)
     {
+        // Create a new user instance
         $user = new UsersModel;
 
         $user->name = $request->name;
-
         $user->username = $request->username;
-
         $user->email = $request->email;
-
         $user->password = Hash::make($request->password);
-
         $user->save();
-        
-        return redirect()->route('Clients.Login');
+
+        return redirect()->route('Clients.Login')->with('success', 'Registration successful. Please Login to shop.');
     }
 }

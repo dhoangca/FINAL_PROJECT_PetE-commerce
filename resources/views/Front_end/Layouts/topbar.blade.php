@@ -27,7 +27,7 @@
                                 {{ Auth::user()->name }}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="" class="text-decoration-none">
+                                <a href="{{ route('Clients.profile.edit') }}" class="text-decoration-none">
                                     <button class="dropdown-item" type="button">
                                         Profile
                                     </button>
@@ -37,7 +37,7 @@
                                         Đơn mua
                                     </button>
                                 </a>
-                                <a href="" class="text-decoration-none">
+                                <a href="{{ route('Clients.profile.edit') }}" class="text-decoration-none">
                                     <button class="dropdown-item" type="button">
                                         Settings
                                     </button>

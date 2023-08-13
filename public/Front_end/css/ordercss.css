@@ -202,21 +202,17 @@ body{
 /* Floating message */
 .floating-message {
     width: 35%;
-    height: 35%;
+    height: 7%;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #FFD333;
-    color: #fff;
+    color: #3D464D;
     padding: 10px 20px;
     border-radius: 5px;
     text-align: center;
-}
-.floating-message-h {
-    padding: 20%;
-    text-align: center;
     font-size: large;
-    color: #3D464D;
     font-weight: 1000 !important;
 }
+
