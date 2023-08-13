@@ -327,7 +327,7 @@
 </div>
 <!-- Products End -->
 {{-- @endsection --}}
-
+{{-- edit error detail product --}}
 <!-- footer -->
 @INCLUDE('Front_end.Layouts.footer')
 
