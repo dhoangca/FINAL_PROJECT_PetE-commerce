@@ -38,9 +38,17 @@
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
+                                    <br>
+                                    <br>
+                                    <br>
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
+                                    @if (session('success'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -50,17 +58,19 @@
                                             </ul>
                                         </div>
                                     @endif
+
                                     <form action="{{ route('Clients.postLoginU') }}" method="POST" class="user">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" name="email" id="email" class="form-control form-control-user"
-                                                 aria-describedby="emailHelp"
-                                                placeholder="Enter Email ..." value="{{ old('email') }}" required autofocus>
+                                            <input type="email" name="email" id="email"
+                                                class="form-control form-control-user" aria-describedby="emailHelp"
+                                                placeholder="Enter Email ..." value="{{ old('email') }}" required
+                                                autofocus>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password"
-                                                class="form-control form-control-user"
-                                                placeholder="Password" id="password" required>
+                                                class="form-control form-control-user" placeholder="Password"
+                                                id="password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -70,21 +80,18 @@
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        <br>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    </div> --}}
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="{{ route('Clients.Register') }}">Create an Account!</a>
                                     </div>
+                                    <br>
+                                    <br>
+
                                 </div>
                             </div>
                         </div>

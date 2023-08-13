@@ -54,7 +54,7 @@ class OrderController extends Controller
 
         session()->forget('cart');
 
-        return redirect()->route('Clients.orderSuccess', $order->order_id);
+        return redirect()->route('Clients.orderSuccess', $order->order_id)->with('order_success', 'Order placed successfully.');
     }
     public function orderSuccess(UOrderModel $order)
     {

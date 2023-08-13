@@ -139,9 +139,9 @@
                     <button class="btn btn-primary px-3" id="add-to-cart-button-product" data-product-id="{{ $ProductsDetail->product_id }}">
                         <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
                     </button>
-                    <span style="margin-left: 10px;"></span>
+                    {{-- <span style="margin-left: 10px;"></span>
                     <button class="btn btn-primary px-3"><i class="fa fa-money-bill mr-1"></i> Buy Now
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>

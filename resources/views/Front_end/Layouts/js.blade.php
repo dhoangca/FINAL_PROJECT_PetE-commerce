@@ -317,12 +317,38 @@
 {{-- hiển thị thông báo order thành công --}}
 <script>
     // Display floating message and fade out after a few seconds
-    setTimeout(function () {
-        var floatingMessage = document.getElementById('floating-message');
+    setTimeout(function() {
+        var floatingMessage = document.getElementById('floating-message-order');
         floatingMessage.classList.remove('hidden');
-        setTimeout(function () {
+        setTimeout(function() {
             floatingMessage.style.display = 'none';
         }, 3000);
     }, 1000);
 </script>
 {{-- end --}}
+
+{{-- update profile --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#change-photo-button').click(function() {
+            $('#image').click();
+        });
+    });
+</script>
+{{-- end --}}
+
+{{-- thông báo nổi update thành công --}}
+<script>
+    // Display the floating message and hide after 2 seconds
+    const floatingMessage = document.getElementById('floating-message-profile');
+    if (floatingMessage) {
+        floatingMessage.style.display = 'block';
+        setTimeout(() => {
+            floatingMessage.style.display = 'none';
+        }, 4000); // 2 seconds
+    }
+</script>
+{{-- end --}}
+
+

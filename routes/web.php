@@ -20,6 +20,11 @@ use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Clients\ProductsController;
 use App\Http\Controllers\Clients\OrderController;
 use App\Http\Controllers\Clients\PurchaseOrderController;
+use App\Http\Controllers\Clients\ProfileController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AuthU\VerificationController;
+use App\Http\Controllers\AuthU\VerificationNoticeController;
+use App\Http\Controllers\AuthU\VerificationResendController;
 
 
 /*
@@ -50,6 +55,8 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
         Route::post('login/', [LoginUController::class, 'postLoginU'])->name('postLoginU');
 
         Route::post('logout/', [LogoutUController::class, 'logoutU'])->name('logout');
+
+        Auth::routes(['verify' => true]);
     });
 
     // route pages contents clients
@@ -65,9 +72,11 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::get('search/', [SearchController::class, 'search'])->name('search');
 
-        Route::get('filtered-products-and-pets/{category_id}', [CategoriController::class, 'filterByCategory'])->name('filtered-products-and-pets');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
-        // Route::get('products/filter/',[ProductsController::class,'filterByPrice'])->name('filterByPrice');
+        Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+        Route::get('filtered-products-and-pets/{category_id}', [CategoriController::class, 'filterByCategory'])->name('filtered-products-and-pets');
     });
 
     // route Cart
@@ -75,7 +84,7 @@ Route::prefix('Clients')->name('Clients.')->group(function () {
 
         Route::get('cart/', [CartController::class, 'cart'])->name('cart');
 
-        Route::get('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
+        // Route::get('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
 
         Route::post('add-to-cart/{item_id}/{item_type}', [CartController::class, 'addToCart'])->name('addToCart');
 
@@ -153,7 +162,7 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
         Route::get('managepets/', [ManagePetController::class, 'managepets'])->name('managepets')->middleware('role:admin,staff');
 
-        Route::get('create/', [ManagePetController::class, 'getCreatePets'])->name('create')->middleware('role:admin,staff');
+        Route::get('create/', [ManagePetController::class, 'getCreatePets'])->name('petcreate')->middleware('role:admin,staff');
 
         Route::post('create/', [ManagePetController::class, 'postCreatePets'])->middleware('role:admin,staff');
 
@@ -171,7 +180,7 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
         Route::get('manageproducts/', [ManageProductsController::class, 'manageproducts'])->name('manageproducts')->middleware('role:admin,staff');
 
-        Route::get('create/', [ManageProductsController::class, 'getCreateProducts'])->name('create')->middleware('role:admin,staff');
+        Route::get('create/', [ManageProductsController::class, 'getCreateProducts'])->name('productcreate')->middleware('role:admin,staff');
 
         Route::post('create/', [ManageProductsController::class, 'postCreateProducts'])->middleware('role:admin,staff');
 
@@ -189,7 +198,7 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
         Route::get('managecategoris/', [ManageCategoriController::class, 'managecategoris'])->name('managecategoris')->middleware('role:admin,staff');
 
-        Route::get('create/', [ManageCategoriController::class, 'getCreateCategori'])->name('create')->middleware('role:admin,staff');
+        Route::get('create/', [ManageCategoriController::class, 'getCreateCategori'])->name('categorycreate')->middleware('role:admin,staff');
 
         Route::post('create/', [ManageCategoriController::class, 'postCreateCategori'])->middleware('role:admin,staff');
 
@@ -208,7 +217,7 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
         Route::get('manageorders/', [ManageOrdersController::class, 'manageorders'])->name('manageorders')->middleware('role:admin,staff');
 
         Route::get('detail/{order_id}', [ManageOrdersController::class, 'detailorder'])->middleware('role:admin,staff');
-        
+
         Route::get('edit/{order_id}', [ManageOrdersController::class, 'getEditOrders'])->middleware('role:admin,staff');
 
         Route::post('edit/{order_id}', [ManageOrdersController::class, 'postEditOrders'])->middleware('role:admin,staff');
@@ -220,3 +229,6 @@ Route::prefix('Admins')->name('Admins.')->group(function () {
 
 
 // end route back-end
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

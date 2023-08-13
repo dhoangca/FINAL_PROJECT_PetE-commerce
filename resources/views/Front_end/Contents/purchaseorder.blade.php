@@ -81,7 +81,7 @@
                     @endforeach
                 @endif
             </nav>
-        </div>          
+        </div>
 
         <div class="col-lg-4">
             <h5 class="section-title position-relative text-uppercase mb-3"><span
@@ -95,29 +95,34 @@
                     <hr>
                     <div style="padding-left: 120px">
                         <div style="text-align: left">
-                            <a href="#" style="text-decoration: none; text-align: center; color: #3D464D;">
+                            <a href="{{ route('Clients.profile.edit') }}"
+                                style="text-decoration: none; text-align: center; color: #3D464D;">
                                 <i class='fas fa-user-alt' style="margin-right: 8px;"></i>
                                 <span> Tài khoản của tôi </span>
                             </a>
                         </div>
                         <br>
                         <div style="text-align: left">
-                            <a href="#" style="text-decoration: none; text-align: center; color: #3D464D;">
+                            <a href="{{ route('Clients.purchaseorder') }}"
+                                style="text-decoration: none; text-align: center; color: #3D464D;">
                                 <i class='fas fa-clipboard-list' style="margin-right: 12px;"></i>
                                 <span>Đơn mua</span>
                             </a>
                         </div>
                         <br>
-                        <div style="text-align: left">
+                        {{-- <div style="text-align: left">
                             <a href="#" style="text-decoration: none; text-align: center; color: #3D464D;">
                                 <i class='fas fa-bell' style="margin-right: 8px;"></i>
                                 <span>Thông báo</span>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Chỉnh sửa thông tin</button>
+                    <a href="{{ route('Clients.profile.edit') }}" class="text-decoration-none">
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Chỉnh sửa thông
+                            tin</button>
+                    </a>
                 </div>
             </div>
         </div>
