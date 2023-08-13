@@ -28,7 +28,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="Front_end/css/style.css" rel="stylesheet">
 
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    
 
 </head>
 
