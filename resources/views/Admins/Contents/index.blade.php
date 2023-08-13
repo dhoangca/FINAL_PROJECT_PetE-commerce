@@ -335,7 +335,7 @@
 
         </div>
     </div>
-
+{{-- edit error and add dropdown and complete view website --}}
 </div>
 <!-- /.container-fluid -->
 {{-- @endsection --}}

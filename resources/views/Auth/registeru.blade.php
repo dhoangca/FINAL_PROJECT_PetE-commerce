@@ -98,7 +98,7 @@
         </div>
 
     </div>
-
+{{-- Register user complete --}}
     <!-- Bootstrap core JavaScript-->
     <script src="Admin/vendor/jquery/jquery.min.js"></script>
     <script src="Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

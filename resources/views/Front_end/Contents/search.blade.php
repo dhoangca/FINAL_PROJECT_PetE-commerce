@@ -7,7 +7,7 @@
 <!-- navbar -->
 @INCLUDE('Front_end.Layouts.navbar')
 
-<!-- Search product and pet-->
+<!-- Search product and pet complete -->
 
 {{-- @section('content_index') --}}
 
